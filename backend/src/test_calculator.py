@@ -1,4 +1,5 @@
 import unittest
+import math
 from src.calculator import Calculator
 
 
@@ -7,8 +8,73 @@ class TestCalculator(unittest.TestCase):
     def setUp(self):
         self.calculator = Calculator()
 
-    def test_add(self):
+    def test_addition(self):
         self.assertEqual(self.calculator.addition(1, 2), 3)
+        self.assertEqual(self.calculator.addition(5, -2), 3)
+        self.assertEqual(self.calculator.addition(-1, -4), -5)
+        self.assertEqual(self.calculator.addition(-1, 1), 0)
+        self.assertEqual(self.calculator.addition(0, 0), 0)
+        self.assertEqual(self.calculator.addition(1.2, 3.4), 4.6)
+
+    def test_multiplication(self):
+        self.assertEqual(self.calculator.multiplication(7, 8), 56)
+        self.assertEqual(self.calculator.multiplication(0, 0), 0)
+        self.assertEqual(self.calculator.multiplication(0, -7), 0)
+        self.assertEqual(self.calculator.multiplication(70, 0), 0)
+        self.assertEqual(self.calculator.multiplication(-3, -5), 15)
+        self.assertEqual(self.calculator.multiplication(-3, 5), -15)
+        self.assertEqual(self.calculator.multiplication(-0.5, -1.6), 0.8)
+
+    def test_subtraction(self):
+        self.assertEqual(self.calculator.subtraction(7, 4), 3)
+        self.assertEqual(self.calculator.subtraction(0, 0), 0)
+        self.assertEqual(self.calculator.subtraction(-6, 4), -10)
+        self.assertEqual(self.calculator.subtraction(5, -5), 10)
+        self.assertEqual(self.calculator.subtraction(-2, -3), 1)
+        self.assertEqual(self.calculator.subtraction(-2.4, -3.8), 1.4)
+
+    def test_division(self):
+        self.assertEqual(self.calculator.division(56, 8), 7)
+        self.assertEqual(self.calculator.division(-32, 16), -2)
+        self.assertEqual(self.calculator.division(-14, -7), 2)
+        self.assertEqual(self.calculator.division(0.75, -0.25), -3)
+        self.assertIsNone(self.calculator.division(1, 0))
+
+    def test_absolute(self):
+        self.assertEqual(self.calculator.absolute(2), 2)
+        self.assertEqual(self.calculator.absolute(-2), 2)
+        self.assertEqual(self.calculator.absolute(0), 0)
+        self.assertEqual(self.calculator.absolute(-0.38), 0.38)
+
+    def test_degree(self):
+        self.assertEqual(self.calculator.degree(3, 4), 81)
+        self.assertEqual(self.calculator.degree(0, 100), 0)
+        self.assertEqual(self.calculator.degree(100, 0), 1)
+        self.assertEqual(self.calculator.degree(1, 100), 1)
+        self.assertEqual(self.calculator.degree(-4, 3), -64)
+        self.assertAlmostEqual(self.calculator.degree(2, -3), 1/8)
+
+    def test_ln(self):
+        self.assertAlmostEqual(self.calculator.ln(3.8), 1.33500106673234)
+        self.assertAlmostEqual(self.calculator.ln(math.e), 1)
+        self.assertAlmostEqual(self.calculator.ln(math.e ** 3), 3)
+        self.assertAlmostEqual(self.calculator.ln(1), 0)
+
+    def test_log(self):
+        self.assertAlmostEqual(self.calculator.log(1024, 2), 10)
+        self.assertAlmostEqual(self.calculator.log(64, 4), 3)
+        self.assertAlmostEqual(self.calculator.log(123, 123), 1)
+        self.assertAlmostEqual(self.calculator.log(1, 100), 0)
+
+    def test_sqrt(self):
+        self.assertAlmostEqual(self.calculator.sqrt(64), 8)
+        self.assertAlmostEqual(self.calculator.sqrt(1), 1)
+        self.assertAlmostEqual(self.calculator.sqrt(0), 0)
+
+    def test_nth_root(self):
+        self.assertAlmostEqual(self.calculator.nth_root(64, 3), 4)
+        self.assertAlmostEqual(self.calculator.nth_root(0, 100), 0)
+        self.assertAlmostEqual(self.calculator.nth_root(2, 0.25), 16)
 
 
 if __name__ == "__main__":
