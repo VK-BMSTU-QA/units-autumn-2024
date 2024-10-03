@@ -6,7 +6,7 @@ import { Categories } from './Categories';
 afterEach(jest.clearAllMocks);
 describe('Categories test', () => {
     it('should render correctly', () => {
-        const rendered = render(<Categories selectedCategories={[]} />);
+        const rendered = render(<Categories selectedCategories={['Одежда']} />);
 
         expect(rendered.asFragment()).toMatchSnapshot();
     });
