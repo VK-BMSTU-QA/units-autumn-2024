@@ -23,8 +23,6 @@ describe('ProductCard test', () => {
             imgUrl: '/iphone.png',
         };
 
-        expect(getPrice).toHaveBeenCalledTimes(0);
-
         const rendered = render(
             <ProductCard
                 id={product.id}
@@ -39,6 +37,7 @@ describe('ProductCard test', () => {
 
         expect(rendered.asFragment()).toMatchSnapshot();
         expect(getPrice).toHaveBeenCalledTimes(1);
+        expect(rendered.queryByAltText(product.name)).not.toBeNull();
     });
     it('should not render image if imgUrl is not provided', () => {
         const product: Product = {
