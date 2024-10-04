@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MainPage } from './MainPage';
 import { fireEvent, render } from '@testing-library/react';
 import { useCurrentTime, useProducts } from '../../hooks';
