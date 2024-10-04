@@ -1,7 +1,6 @@
 import math
 import unittest
 
-from numpy import NaN
 from calculator import Calculator
 
 
