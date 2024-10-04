@@ -1,21 +1,32 @@
 import { Category } from '../../types';
 import { updateCategories } from '../updateCategories';
 
-describe('updateCategories', () => {
-    it('should add a category to the list', () => {
-        const currentCategories: Category[] = ['Одежда', 'Для дома'];
-        const changedCategories: Category = 'Электроника';
+interface UpdateCategoriesTestCase {
+    currentCategories: Category[];
+    changedCategory: Category;
+    expected: Category[];
+}
 
-        const result = updateCategories(currentCategories, changedCategories);
+const testCases: UpdateCategoriesTestCase[] = [
+    {
+        currentCategories: ['Одежда', 'Для дома'],
+        changedCategory: 'Электроника',
+        expected: ['Одежда', 'Для дома', 'Электроника'],
+    },
+    {
+        currentCategories: ['Одежда', 'Для дома'],
+        changedCategory: 'Для дома',
+        expected: ['Одежда'],
+    },
+];
 
-        expect(result).toStrictEqual(['Одежда', 'Для дома', 'Электроника']);
-    });
+const testFn = ({
+    currentCategories,
+    changedCategory,
+    expected,
+}: UpdateCategoriesTestCase) => {
+    const result = updateCategories(currentCategories, changedCategory);
+    expect(result).toStrictEqual(expected);
+};
 
-    it('should remove a category from the list', () => {
-        const currentCategories: Category[] = ['Одежда', 'Для дома'];
-        const changedCategories: Category = 'Для дома';
-
-        const result = updateCategories(currentCategories, changedCategories);
-        expect(result).toStrictEqual(['Одежда']);
-    });
-});
+test.each(testCases)('currentCategories: %o; changedCategory: %s', testFn);
