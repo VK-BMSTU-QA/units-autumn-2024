@@ -22,14 +22,10 @@
     "prettier"
   ],
   "rules": {
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
     "quotes": [
       "error",
       "single"
     ],
-    "prettier/prettier": "error"
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }
