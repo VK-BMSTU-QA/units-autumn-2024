@@ -27,6 +27,11 @@ describe('MainPage test', () => {
         jest.mocked(useProducts).mockReturnValue(productsMockValue);
         jest.mocked(useCurrentTime).mockReturnValue(timeMockValue);
         jest.mocked(applyCategories).mockReturnValue(productsMockValue);
+
+        expect(useProducts).toBeCalledTimes(0);
+        expect(useCurrentTime).toBeCalledTimes(0);
+        expect(applyCategories).toBeCalledTimes(0);
+
         const rendered = render(<MainPage />);
 
         expect(rendered.asFragment()).toMatchSnapshot();
