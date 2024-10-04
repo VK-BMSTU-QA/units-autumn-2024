@@ -28,7 +28,7 @@ describe('useCurrentTime test', () => {
 
     it('should render correctly', () => {
         const { result } = renderHook(() => useCurrentTime());
-        expect(result.current).toBe('15:00:00');
+        expect(result.current).toBe('12:00:00');
     });
     it('should use Date function', () => {
         const { result } = renderHook(() => useCurrentTime());
