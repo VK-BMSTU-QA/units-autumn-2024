@@ -38,7 +38,6 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calculator.division(-32, 16), -2)
         self.assertEqual(self.calculator.division(-14, -7), 2)
         self.assertEqual(self.calculator.division(0.75, -0.25), -3)
-        self.assertIsNone(self.calculator.division(1, 0))
 
     def test_absolute(self):
         self.assertEqual(self.calculator.absolute(2), 2)
@@ -70,11 +69,34 @@ class TestCalculator(unittest.TestCase):
         self.assertAlmostEqual(self.calculator.sqrt(64), 8)
         self.assertAlmostEqual(self.calculator.sqrt(1), 1)
         self.assertAlmostEqual(self.calculator.sqrt(0), 0)
+        self.assertAlmostEqual(self.calculator.sqrt(-100), 10j)
 
     def test_nth_root(self):
         self.assertAlmostEqual(self.calculator.nth_root(64, 3), 4)
         self.assertAlmostEqual(self.calculator.nth_root(0, 100), 0)
         self.assertAlmostEqual(self.calculator.nth_root(2, 0.25), 16)
+        self.assertAlmostEqual(self.calculator.nth_root(-100, 2), 10j)
+
+    def test_division_negative(self):
+        self.assertIsNone(self.calculator.division(1, 0))
+
+    def test_ln_negative(self):
+        with self.assertRaises(ValueError):
+            self.calculator.ln(-math.e)
+
+    def test_log_negative(self):
+        with self.assertRaises(ZeroDivisionError):
+            self.calculator.log(100, 1)
+        with self.assertRaises(ValueError):
+            self.calculator.log(100, -10)
+        with self.assertRaises(ValueError):
+            self.calculator.log(100, 0)
+        with self.assertRaises(ValueError):
+            self.calculator.log(-100, 10)
+
+    def test_nth_root_negative(self):
+        with self.assertRaises(ZeroDivisionError):
+            self.calculator.nth_root(100, 0)
 
     def test_addition_wrong_type(self):
         with self.assertRaises(TypeError):
