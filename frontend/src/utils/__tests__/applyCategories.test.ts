@@ -1,28 +1,60 @@
+import { Product } from '../../types';
 import { applyCategories } from '../applyCategories';
-import {Product, Category} from "../../types";
+describe('test apply category function', () => {
 
-describe('applyCategories function test', () => {
     const products: Product[] = [
-        { id: 1, name: 'Product 1', category: 'Электроника', description: 'Лучший товар 1',price: 100},
-        { id: 2, name: 'Product 2', category: 'Для дома', description: 'Лучший товар 2',price: 200},
-        { id: 3, name: 'Product 3', category: 'Одежда' , description: 'Лучший товар 3',price: 300},
-        { id: 4, name: 'Product 4', category: 'Одежда' , description: 'Лучший товар 4',price: 400},
+        {
+            id: 1,
+            name: 'IPhone 14 Pro',
+            description: 'Latest iphone, buy it now',
+            price: 999,
+            priceSymbol: '$',
+            category: 'Электроника',
+            imgUrl: '/iphone.png',
+        },
+        {
+            id: 2,
+            name: 'Костюм гуся',
+            description: 'Запускаем гуся, работяги',
+            price: 1000,
+            priceSymbol: '₽',
+            category: 'Одежда',
+        },
+        {
+            id: 3,
+            name: 'Настольная лампа',
+            description: 'Говорят, что ее использовали в pixar',
+            price: 699,
+            category: 'Для дома',
+            imgUrl: '/lamp.png',
+        },
+        {
+            id: 4,
+            name: 'Принтер',
+            description: 'Незаменимая вещь для студента',
+            price: 7000,
+            category: 'Электроника',
+        },
     ];
 
-    const categories: Category[] = ['Электроника', 'Одежда'];
+    const electronic = [products[0], products[3]];
+    const clothes = [products[1]];
+    const home = [products[2]];
 
-    it('should return all products if categories array is empty', () => {
-        const result = applyCategories(products, []);
-        expect(result).toEqual(products);
+    it('should return list of all products', () => {
+        expect(applyCategories(products, [])).toEqual(products);
+        expect(applyCategories(products, ['Электроника', 'Для дома', 'Одежда'])).toStrictEqual(products);
     });
 
-    it('should return empty array if products array is empty', () => {
-        const result = applyCategories([], categories);
-        expect(result).toEqual([]);
+    it('should return list of clothes', () => {
+        expect(applyCategories(products, ['Для дома'])).toStrictEqual(home);
     });
 
-    it('should return empty array if both products and categories arrays are empty', () => {
-        const result = applyCategories([], []);
-        expect(result).toEqual([]);
+    it('should return list of electronic products', () => {
+        expect(applyCategories(products, ['Электроника'])).toStrictEqual(electronic);
+    });
+
+    it('should return list of home products and clothes', () => {
+        expect(applyCategories(products, ['Одежда', 'Для дома'])).toStrictEqual([...clothes, ...home]);
     });
 });

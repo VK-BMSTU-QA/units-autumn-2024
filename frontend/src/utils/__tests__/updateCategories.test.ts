@@ -21,18 +21,12 @@ describe('Testing the updateCategories function', () => {
     it('should not modify the array if the provided category is not found', () => {
         const changedCategory: Category = 'Одежда';
         const result = updateCategories(currentCategories, changedCategory);
-        expect(result).not.toEqual(currentCategories);
+        expect(result).not.toStrictEqual(currentCategories);
     });
 
-    it('should return an empty array if the array of current categories is empty', () => {
+    it('should add to array only one item', () => {
         const result = updateCategories([], 'Одежда');
         expect(result).toHaveLength(1);
         expect(result).toContain('Одежда');
-    });
-
-    it('should return an empty array if the provided category is added and the array of current categories is empty', () => {
-        const result = updateCategories([], 'Электроника');
-        expect(result).toHaveLength(1);
-        expect(result).toContain('Электроника');
     });
 });
