@@ -11,7 +11,7 @@ describe('Products test', () => {
     it('should mock get price function', () => {
         jest.mocked(getPrice).mockReturnValue('100 RK6');
 
-        render(
+        const rendered = render(
             <ProductCard
                 id={1}
                 name={'Andrew'}
@@ -21,6 +21,7 @@ describe('Products test', () => {
             />
         );
 
+        expect(rendered.asFragment()).toMatchSnapshot();
         expect(getPrice).lastReturnedWith('100 RK6');
     });
     it('should add img by given url', () => {
@@ -35,6 +36,7 @@ describe('Products test', () => {
             />
         );
 
+        expect(rendered.asFragment()).toMatchSnapshot();
         expect(rendered.getByAltText('Andrew')).toHaveClass(
             'product-card__image'
         );
@@ -51,6 +53,7 @@ describe('Products test', () => {
             />
         );
 
-        expect(rendered.queryAllByAltText('Andrew').length).toEqual(0);
+        expect(rendered.asFragment()).toMatchSnapshot();
+        expect(rendered.queryAllByAltText('Andrew')).toHaveLength(0);
     });
 });

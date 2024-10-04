@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Products test should add img by given url 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        Andrew
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        RK6 developer
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        100 RK6
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Электроника
+      </div>
+    </div>
+    <img
+      alt="Andrew"
+      class="product-card__image"
+      src="public/iphone.png"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Products test should mock get price function 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        Andrew
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        RK6 developer
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        100 RK6
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Электроника
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Products test should not add img 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        Aleshka
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        BMSTU Student
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        100 RK6
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Для дома
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
