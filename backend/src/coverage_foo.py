@@ -13,3 +13,6 @@ class MyClass:
             b = b / a
 
         return a + b
+
+    # my_foo('a', 1.3)
+    # my_foo(None, 1)

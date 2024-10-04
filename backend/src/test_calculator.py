@@ -50,22 +50,22 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.addition, ['asda', 34], None)
 
     # Next 6 tests check positive cases of subtraction function
-    def test_subtraction_posititve(self):
+    def test_subtraction_positive(self):
         self.assertEqual(self.calculator.subtraction(1, 2), -1)
 
-    def test_subtraction_posititve_1(self):
+    def test_subtraction_positive_1(self):
         self.assertEqual(self.calculator.subtraction(-1, 2), -3)
 
-    def test_subtraction_posititve_2(self):
+    def test_subtraction_positive_2(self):
         self.assertEqual(self.calculator.subtraction(0, 0), 0)
 
-    def test_subtraction_posititve_3(self):
+    def test_subtraction_positive_3(self):
         self.assertTrue(math.isnan(self.calculator.subtraction(math.inf, math.inf)))
 
-    def test_subtraction_posititve_4(self):
+    def test_subtraction_positive_4(self):
         self.assertEqual(self.calculator.subtraction(-math.inf, math.inf), -math.inf)
 
-    def test_subtraction_posititve_5(self):
+    def test_subtraction_positive_5(self):
         self.assertEqual(self.calculator.subtraction(0, 5.000001), -5.000001)
 
     # Next 8 tests check negative cases of subtraction function
@@ -147,9 +147,6 @@ class TestCalculator(unittest.TestCase):
     def test_division_positive_4(self):
         self.assertTrue(math.isnan(self.calculator.division(math.inf, math.inf)))
 
-    def test_division_positive_5(self):
-        self.assertEqual(self.calculator.division(0, 0), None)
-
     # Next 3 tests check negative cases of division function
     def test_division_negative(self):
         self.assertRaises(TypeError, self.calculator.division, 'sadas', math.inf)
@@ -159,6 +156,9 @@ class TestCalculator(unittest.TestCase):
 
     def test_division_negative_2(self):
         self.assertRaises(TypeError, self.calculator.division, [23, 43, 4], {'23423', 123})
+
+    def test_division_negative_3(self):
+        self.assertRaises(ZeroDivisionError, self.calculator.division, 0, 0)
 
     # Next 7 tests check positive cases of absolute function
     def test_absolute_positive(self):
