@@ -39,7 +39,9 @@ describe('applyCategories', () => {
         ];
         const categories: Category[] = [];
 
-        expect(applyCategories(products, categories)).toEqual(products);
+        const result = applyCategories(products, categories);
+
+        expect(result).toStrictEqual(products);
     });
 
     it('should return products that match the selected categories', () => {
@@ -79,7 +81,9 @@ describe('applyCategories', () => {
         ];
         const categories: Category[] = ['Одежда'];
 
-        expect(applyCategories(products, categories)).toEqual([
+        const result = applyCategories(products, categories);
+
+        expect(result).toStrictEqual([
             {
                 id: 2,
                 name: 'Костюм гуся',

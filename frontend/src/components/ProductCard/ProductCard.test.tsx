@@ -21,13 +21,13 @@ describe('ProductCard test', () => {
             priceSymbol: '$',
             category: 'Электроника',
             imgUrl: '/iphone.png',
-        }
+        };
 
         expect(getPrice).toHaveBeenCalledTimes(0);
 
         const rendered = render(
             <ProductCard
-                id = {product.id}
+                id={product.id}
                 name={product.name}
                 description={product.description}
                 price={product.price}
@@ -40,7 +40,6 @@ describe('ProductCard test', () => {
         expect(rendered.asFragment()).toMatchSnapshot();
         expect(getPrice).toHaveBeenCalledTimes(1);
     });
-    
     it('should not render image if imgUrl is not provided', () => {
         const product: Product = {
             id: 1,
@@ -49,13 +48,13 @@ describe('ProductCard test', () => {
             price: 999,
             priceSymbol: '$',
             category: 'Электроника',
-        }
+        };
 
         jest.mocked(getPrice).mockReturnValue('999 шекелей');
 
         const rendered = render(
             <ProductCard
-                id = {product.id}
+                id={product.id}
                 name={product.name}
                 description={product.description}
                 price={product.price}
