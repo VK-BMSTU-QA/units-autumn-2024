@@ -23,10 +23,10 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.addition, 'abc', 4)
         
     def test_add_inf(self):
-        self.assertEqual(self.calculator.addition(float('inf'), float('inf')), float('inf'))
+        self.assertEqual(self.calculator.addition(math.inf, math.inf), math.inf)
     
     def test_add_inf_sign(self):
-        self.assertTrue(math.isnan(self.calculator.addition(float('inf'), float('-inf'))))
+        self.assertTrue(math.isnan(self.calculator.addition(math.inf, -math.inf)))
     
     def test_add_neg(self):
         self.assertEqual(self.calculator.addition(-2, -4), -6)
@@ -46,10 +46,10 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.multiplication, 'abc', 'asd')
     
     def test_mult_inf(self):
-        self.assertEqual(self.calculator.multiplication(float('inf'), 2), float('inf'))
+        self.assertEqual(self.calculator.multiplication(math.inf, 2), math.inf)
     
     def test_mult_inf_sign(self):
-        self.assertEqual(self.calculator.multiplication(float('inf'), float('-inf')), float('-inf'))
+        self.assertEqual(self.calculator.multiplication(math.inf, -math.inf), -math.inf)
     
     def test_mult_neg(self):
         self.assertEqual(self.calculator.multiplication(-2, -3), 6)
@@ -59,6 +59,9 @@ class TestCalculator(unittest.TestCase):
         
     def test_mult_zero2(self):
         self.assertEqual(self.calculator.multiplication(0, 0), 0)
+    
+    def test_mult_zero_inf(self):
+        self.assertTrue(math.isnan(self.calculator.multiplication(0, math.inf)))
     
     # test subtraction
     
@@ -75,10 +78,10 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.subtraction, 'abc', 'asd')
     
     def test_sub_inf(self):
-        self.assertEqual(self.calculator.subtraction(float('inf'), 2), float('inf'))
+        self.assertEqual(self.calculator.subtraction(math.inf, 2), math.inf)
     
     def test_sub_inf_sign(self):
-        self.assertTrue(math.isnan(self.calculator.subtraction(float('inf'), float('inf'))))
+        self.assertTrue(math.isnan(self.calculator.subtraction(math.inf, math.inf)))
     
     def test_sub_neg(self):
         self.assertEqual(self.calculator.subtraction(-2, -3), 1)
@@ -104,10 +107,10 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.division, 'abc', 'asd')
     
     def test_div_inf(self):
-        self.assertEqual(self.calculator.division(float('inf'), 2), float('inf'))
+        self.assertEqual(self.calculator.division(math.inf, 2), math.inf)
     
     def test_div_inf_sign(self):
-        self.assertTrue(math.isnan(self.calculator.division(float('inf'), float('inf'))))
+        self.assertTrue(math.isnan(self.calculator.division(math.inf, math.inf)))
     
     def test_div_neg(self):
         self.assertEqual(self.calculator.division(-4, -2), 2)
@@ -142,10 +145,10 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.absolute, 'abc')
     
     def test_abs_inf(self):
-        self.assertEqual(self.calculator.absolute(float('inf')), float('inf'))
+        self.assertEqual(self.calculator.absolute(math.inf), math.inf)
     
     def test_abs_inf_sign(self):
-        self.assertEqual(self.calculator.absolute(float('-inf')), float('inf'))
+        self.assertEqual(self.calculator.absolute(-math.inf), math.inf)
     
     # test degree
 
@@ -169,6 +172,9 @@ class TestCalculator(unittest.TestCase):
 
     def test_degree_zero_base(self):
         self.assertEqual(self.calculator.degree(0, 5), 0)
+    
+    def test_degree_zero_base_neg_exponent(self):
+        self.assertRaises(ZeroDivisionError, self.calculator.degree, 0, -5)
 
     def test_degree_one_base(self):
         self.assertEqual(self.calculator.degree(1, 5), 1)
@@ -180,28 +186,28 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.degree, 'abc', 2)
 
     def test_degree_inf_base(self):
-        self.assertEqual(self.calculator.degree(float('inf'), 2), float('inf'))
+        self.assertEqual(self.calculator.degree(math.inf, 2), math.inf)
     
     def test_degree_inf_sign(self):
-        self.assertEqual(self.calculator.degree(float('inf'), -2), 0)
+        self.assertEqual(self.calculator.degree(math.inf, -2), 0)
     
     def test_degree_inf_exponent(self):
-        self.assertEqual(self.calculator.degree(2, float('inf')), float('inf'))
+        self.assertEqual(self.calculator.degree(2, math.inf), math.inf)
     
     def test_degree_inf_exponent_sign(self):
-        self.assertEqual(self.calculator.degree(2, float('-inf')), 0)
+        self.assertEqual(self.calculator.degree(2, -math.inf), 0)
         
     def test_degree_inf_base_exponent(self):
-        self.assertEqual(self.calculator.degree(float('inf'), float('inf')), float('inf'))
+        self.assertEqual(self.calculator.degree(math.inf, math.inf), math.inf)
     
     def test_degree_inf_base_neg_exponent(self):
-        self.assertEqual(self.calculator.degree(float('inf'), float('-inf')), 0)
+        self.assertEqual(self.calculator.degree(math.inf, -math.inf), 0)
     
     def test_degree_inf_base_neg_inf_exponent(self):
-        self.assertEqual(self.calculator.degree(float('-inf'), float('inf')), float('inf'))
+        self.assertEqual(self.calculator.degree(-math.inf, math.inf), math.inf)
     
     def test_degree_inf_base_neg_neg_inf_exponent(self):
-        self.assertEqual(self.calculator.degree(float('-inf'), float('-inf')), 0)
+        self.assertEqual(self.calculator.degree(-math.inf, -math.inf), 0)
         
     # test ln
 
@@ -227,10 +233,10 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.ln, 'abc')
     
     def test_ln_inf(self):
-        self.assertEqual(self.calculator.ln(float('inf')), float('inf'))
+        self.assertEqual(self.calculator.ln(math.inf), math.inf)
     
     def test_ln_neg_inf(self):
-        self.assertRaises(ValueError, self.calculator.ln, float('-inf'))
+        self.assertRaises(ValueError, self.calculator.ln, -math.inf)
     
     # test log
     
@@ -256,13 +262,13 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.log, 'abc', 2)
 
     def test_log_inf(self):
-        self.assertEqual(self.calculator.log(float('inf'), 2), float('inf'))
+        self.assertEqual(self.calculator.log(math.inf, 2), math.inf)
 
     def test_log_neg_inf(self):
-        self.assertRaises(ValueError, self.calculator.log, 8, float('-inf'))
+        self.assertRaises(ValueError, self.calculator.log, 8, -math.inf)
     
     def test_log_neg_inf_base(self):
-        self.assertRaises(ValueError, self.calculator.log, float('-inf'), 2)
+        self.assertRaises(ValueError, self.calculator.log, -math.inf, 2)
     
     # test sqrt
     
@@ -285,10 +291,10 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.sqrt, 'abc')
 
     def test_sqrt_inf(self):
-        self.assertEqual(self.calculator.sqrt(float('inf')), float('inf'))
+        self.assertEqual(self.calculator.sqrt(math.inf), math.inf)
 
     def test_sqrt_neg_inf(self):
-        self.assertEqual(self.calculator.sqrt(float('-inf')), float('inf'))
+        self.assertEqual(self.calculator.sqrt(-math.inf), math.inf)
 
     # test nth_root
     
@@ -314,28 +320,28 @@ class TestCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.nth_root, 'abc', 3)
 
     def test_nth_root_inf(self):
-        self.assertEqual(self.calculator.nth_root(float('inf'), 3), float('inf'))
+        self.assertEqual(self.calculator.nth_root(math.inf, 3), math.inf)
 
     def test_nth_root_neg_inf(self):
-        self.assertEqual(self.calculator.nth_root(float('-inf'), 3), float('inf'))
+        self.assertEqual(self.calculator.nth_root(-math.inf, 3), math.inf)
     
     def test_nth_root_inf_exponent(self):
-        self.assertEqual(self.calculator.nth_root(27, float('inf')), 1)
+        self.assertEqual(self.calculator.nth_root(27, math.inf), 1)
     
     def test_nth_root_inf_neg_exponent(self):
-        self.assertEqual(self.calculator.nth_root(27, float('-inf')), 1)
+        self.assertEqual(self.calculator.nth_root(27, -math.inf), 1)
         
     def test_nth_root_inf_base_inf_exponent(self):
-        self.assertEqual(self.calculator.nth_root(float('inf'), float('inf')), 1)
+        self.assertEqual(self.calculator.nth_root(math.inf, math.inf), 1)
     
     def test_nth_root_inf_base_neg_inf_exponent(self):
-        self.assertEqual(self.calculator.nth_root(float('inf'), float('-inf')), 1)
+        self.assertEqual(self.calculator.nth_root(math.inf, -math.inf), 1)
     
     def test_nth_root_neg_inf_base_neg_inf_exponent(self):
-        self.assertEqual(self.calculator.nth_root(float('-inf'), float('-inf')), 1)
+        self.assertEqual(self.calculator.nth_root(-math.inf, -math.inf), 1)
     
     def test_nth_root_neg_inf_base_inf_exponent(self):
-        self.assertEqual(self.calculator.nth_root(float('-inf'), float('inf')), 1)
+        self.assertEqual(self.calculator.nth_root(-math.inf, math.inf), 1)
 
 if __name__ == "__main__":
     unittest.main()
