@@ -27,3 +27,6 @@ dist-ssr
 test-report.html
 __pycache__
 .coverage
+
+myenv/
+package-lock.json

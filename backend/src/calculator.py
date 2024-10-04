@@ -16,7 +16,6 @@ class Calculator:
         return x1 - x2
 
     def division(self, x1, x2):
-        if x2 != 0:
             return x1 / x2
 
     def absolute(self, x):
