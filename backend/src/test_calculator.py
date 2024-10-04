@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from calculator import Calculator
+from src.calculator import Calculator
 
 
 class TestCalculatorAdd(unittest.TestCase):
