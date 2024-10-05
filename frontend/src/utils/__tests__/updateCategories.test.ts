@@ -4,21 +4,14 @@ import { Category } from '../../types';
 describe('Testing the updateCategories function', () => {
     const currentCategories: Category[] = ['Электроника', 'Для дома', 'Одежда'];
 
-    it('should add a new category to the array if it does not exist', () => {
+    it('should remove an existing category from the array if it exists', () => {
         const changedCategory: Category = 'Электроника';
         const result = updateCategories(currentCategories, changedCategory);
         expect(result).toHaveLength(2);
         expect(result).not.toContain(changedCategory);
     });
 
-    it('should remove an existing category from the array if it exists', () => {
-        const changedCategory: Category = 'Для дома';
-        const result = updateCategories(currentCategories, changedCategory);
-        expect(result).toHaveLength(2);
-        expect(result).not.toContain(changedCategory);
-    });
-
-    it('should not modify the array if the provided category is not found', () => {
+    it('should modify the array', () => {
         const changedCategory: Category = 'Одежда';
         const result = updateCategories(currentCategories, changedCategory);
         expect(result).not.toStrictEqual(currentCategories);
