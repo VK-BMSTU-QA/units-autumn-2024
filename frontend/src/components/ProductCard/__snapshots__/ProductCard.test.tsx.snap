@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard test should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        test
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        testing
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        123 $
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Одежда
+      </div>
+    </div>
+    <img
+      alt="test"
+      class="product-card__image"
+      src="/test.png"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ProductCard test should render correctly with different price symbols 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        test
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        testing
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        123 $
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Одежда
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
