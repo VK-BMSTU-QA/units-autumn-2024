@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainPage test должен отображаться корректно 1`] = `
+<DocumentFragment>
+  <div
+    class="main-page"
+  >
+    <h2
+      class="main-page__title"
+    >
+      VK Маркет
+    </h2>
+    <h3>
+      time
+    </h3>
+    <div
+      class="main-page__parameters"
+    >
+      <div>
+        <div
+          class=""
+        >
+          Одежда
+        </div>
+        <div
+          class=""
+        >
+          Для дома
+        </div>
+        <div
+          class=""
+        >
+          Электроника
+        </div>
+      </div>
+    </div>
+    <div
+      data-id="1"
+      data-name="IPhone 14 Pro"
+    >
+      IPhone 14 Pro
+    </div>
+    <div
+      data-id="2"
+      data-name="Костюм гуся"
+    >
+      Костюм гуся
+    </div>
+    <div
+      data-id="3"
+      data-name="Настольная лампа"
+    >
+      Настольная лампа
+    </div>
+    <div
+      data-id="4"
+      data-name="Принтер"
+    >
+      Принтер
+    </div>
+  </div>
+</DocumentFragment>
+`;

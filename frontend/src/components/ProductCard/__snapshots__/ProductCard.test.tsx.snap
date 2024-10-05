@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard test должен отображаться корректно 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        Название тестового продукта
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        Описание тестового продукта
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        1234567 ₽
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Электроника
+      </div>
+    </div>
+    <img
+      alt="Название тестового продукта"
+      class="product-card__image"
+      src="https://example.com/image.jpg"
+    />
+  </div>
+</DocumentFragment>
+`;

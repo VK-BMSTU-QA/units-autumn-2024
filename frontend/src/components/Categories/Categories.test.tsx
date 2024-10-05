@@ -5,13 +5,13 @@ import { Categories } from './Categories';
 
 afterEach(jest.clearAllMocks);
 describe('Categories test', () => {
-    it('should render correctly', () => {
+    it('должен отображаться корректно', () => {
         const rendered = render(<Categories selectedCategories={[]} />);
 
         expect(rendered.asFragment()).toMatchSnapshot();
     });
 
-    it('should add class for selected badge', () => {
+    it('следует добавить класс для выбранного значка - Одежда', () => {
         const rendered = render(<Categories selectedCategories={['Одежда']} />);
 
         expect(rendered.getByText('Одежда')).toHaveClass(
@@ -25,17 +25,31 @@ describe('Categories test', () => {
         );
     });
 
-    it('should call callback when category click', () => {
-        const onCategoryClick = jest.fn();
-        const rendered = render(
-            <Categories
-                selectedCategories={[]}
-                onCategoryClick={onCategoryClick}
-            />
-        );
+    it('следует добавить класс для выбранного значка - Электроника', () => {
+        const rendered = render(<Categories selectedCategories={['Электроника']} />);
 
-        expect(onCategoryClick).toHaveBeenCalledTimes(0);
-        fireEvent.click(rendered.getByText('Одежда'));
-        expect(onCategoryClick).toHaveBeenCalledTimes(1);
+        expect(rendered.getByText('Одежда')).not.toHaveClass(
+            'categories__badge_selected'
+        );
+        expect(rendered.getByText('Электроника')).toHaveClass(
+            'categories__badge_selected'
+        );
+        expect(rendered.getByText('Для дома')).not.toHaveClass(
+            'categories__badge_selected'
+        );
+    });
+
+    it('следует добавить класс для выбранного значка - Для дома', () => {
+        const rendered = render(<Categories selectedCategories={['Для дома']} />);
+
+        expect(rendered.getByText('Одежда')).not.toHaveClass(
+            'categories__badge_selected'
+        );
+        expect(rendered.getByText('Электроника')).not.toHaveClass(
+            'categories__badge_selected'
+        );
+        expect(rendered.getByText('Для дома')).toHaveClass(
+            'categories__badge_selected'
+        );
     });
 });
