@@ -1,5 +1,5 @@
 import unittest
-from coverage_foo import MyClass
+from backend.src.coverage_foo import MyClass
 import math
 
 
@@ -28,6 +28,26 @@ class TestMyClass(unittest.TestCase):
 
     def test_my_class_7(self):
         self.assertEqual(self.my_class.my_foo(-2, -4), -6)
+
+    import math
+
+    def test_my_class_8(self):
+        self.assertEqual(self.my_class.my_foo(3, 5), 9)
+
+    def test_my_class_9(self):
+        self.assertEqual(self.my_class.my_foo(2, 4), 4)
+
+    def test_my_class_11(self):
+        self.assertRaises(TypeError, self.my_class.my_foo, None, 4)
+
+    def test_my_class_12(self):
+        self.assertEqual(self.my_class.my_foo(-1, 4), -5)
+
+    def test_my_class_13(self):
+        self.assertEqual(self.my_class.my_foo(1e10, 4), 1e10)
+
+    def test_my_class_14(self):
+        self.assertEqual(self.my_class.my_foo(1e-10, 4), 4e10)
 
 
 if __name__ == "__main__":
