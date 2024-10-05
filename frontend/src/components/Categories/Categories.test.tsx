@@ -52,4 +52,18 @@ describe('Categories test', () => {
             'categories__badge_selected'
         );
     });
+
+    it('следует вызвать колбек при нажатии на категорию', () => {
+        const onCategoryClick = jest.fn();
+        const rendered = render(
+            <Categories
+                selectedCategories={[]}
+                onCategoryClick={onCategoryClick}
+            />
+        );
+
+        expect(onCategoryClick).toHaveBeenCalledTimes(0);
+        fireEvent.click(rendered.getByText('Одежда'));
+        expect(onCategoryClick).toHaveBeenCalledTimes(1);
+    });
 });
