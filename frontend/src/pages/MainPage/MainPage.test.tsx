@@ -127,4 +127,24 @@ describe('MainPage test', () => {
         expect(rendered.getByText('Электроника')).toHaveClass('selected');
         expect(rendered.getByText('Для дома')).not.toHaveClass('selected');
     });
+
+    it('should select all categories', () => {
+        jest.mocked(updateCategories)
+            .mockReturnValueOnce(['Одежда'])
+            .mockReturnValueOnce(['Одежда', 'Электроника'])
+            .mockReturnValueOnce(['Одежда', 'Электроника', 'Для дома'])
+
+        const rendered = render(<MainPage/>);
+
+        act(() => fireEvent.click(rendered.getByText('Одежда')));
+        act(() => fireEvent.click(rendered.getByText('Электроника')));
+        act(() => fireEvent.click(rendered.getByText('Для дома')));
+
+        expect(applyCategories).toHaveBeenCalledTimes(4);
+        expect(updateCategories).toHaveBeenCalledTimes(3);
+
+        expect(rendered.getByText('Одежда')).toHaveClass('selected');
+        expect(rendered.getByText('Электроника')).toHaveClass('selected');
+        expect(rendered.getByText('Для дома')).toHaveClass('selected');
+    });
 });
