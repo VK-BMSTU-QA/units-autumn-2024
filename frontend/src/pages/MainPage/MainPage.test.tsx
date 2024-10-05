@@ -27,7 +27,12 @@ jest.mock('../../components', () => ({
         </div>
     ),
     ProductCard: (product: Product) => (
-        <div data-id={product.id} data-name={product.name}>{product.name}</div>
+        <div className="product-card__text">
+            <div data-id={product.id} data-name={product.name}>{product.name}</div>
+            <div data-id={product.id} data-description={product.description}>{product.description}</div>
+            <div data-id={product.id} data-price={product.price}>{product.price}</div>
+        </div>
+
     ),
 }));
 

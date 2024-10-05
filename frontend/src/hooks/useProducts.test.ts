@@ -2,6 +2,11 @@ import { useProducts } from './useProducts';
 import type { Product } from '../types';
 
 describe('useProducts hook', () => {
+  it('should return unique product IDs', () => {
+    const ids = useProducts().map(p => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
   it('should return an array of products', () => {
     const products = useProducts();
     expect(Array.isArray(products)).toBeTruthy();
@@ -17,10 +22,5 @@ describe('useProducts hook', () => {
     expect(product.priceSymbol).toBe('$');
     expect(product.category).toBe('Электроника');
     expect(typeof product.imgUrl).toBe('string');
-  });
-
-  it('should return unique product IDs', () => {
-    const ids = useProducts().map(p => p.id);
-    expect(new Set(ids).size).toBe(ids.length);
   });
 });

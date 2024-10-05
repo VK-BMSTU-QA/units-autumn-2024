@@ -35,28 +35,92 @@ exports[`MainPage test should be displayed correctly 1`] = `
       </div>
     </div>
     <div
-      data-id="1"
-      data-name="IPhone 14 Pro"
+      class="product-card__text"
     >
-      IPhone 14 Pro
+      <div
+        data-id="1"
+        data-name="IPhone 14 Pro"
+      >
+        IPhone 14 Pro
+      </div>
+      <div
+        data-description="Latest iphone, buy it now"
+        data-id="1"
+      >
+        Latest iphone, buy it now
+      </div>
+      <div
+        data-id="1"
+        data-price="999"
+      >
+        999
+      </div>
     </div>
     <div
-      data-id="2"
-      data-name="Костюм гуся"
+      class="product-card__text"
     >
-      Костюм гуся
+      <div
+        data-id="2"
+        data-name="Костюм гуся"
+      >
+        Костюм гуся
+      </div>
+      <div
+        data-description="Запускаем гуся, работяги"
+        data-id="2"
+      >
+        Запускаем гуся, работяги
+      </div>
+      <div
+        data-id="2"
+        data-price="1000"
+      >
+        1000
+      </div>
     </div>
     <div
-      data-id="3"
-      data-name="Настольная лампа"
+      class="product-card__text"
     >
-      Настольная лампа
+      <div
+        data-id="3"
+        data-name="Настольная лампа"
+      >
+        Настольная лампа
+      </div>
+      <div
+        data-description="Говорят, что ее использовали в pixar"
+        data-id="3"
+      >
+        Говорят, что ее использовали в pixar
+      </div>
+      <div
+        data-id="3"
+        data-price="699"
+      >
+        699
+      </div>
     </div>
     <div
-      data-id="4"
-      data-name="Принтер"
+      class="product-card__text"
     >
-      Принтер
+      <div
+        data-id="4"
+        data-name="Принтер"
+      >
+        Принтер
+      </div>
+      <div
+        data-description="Незаменимая вещь для студента"
+        data-id="4"
+      >
+        Незаменимая вещь для студента
+      </div>
+      <div
+        data-id="4"
+        data-price="7000"
+      >
+        7000
+      </div>
     </div>
   </div>
 </DocumentFragment>

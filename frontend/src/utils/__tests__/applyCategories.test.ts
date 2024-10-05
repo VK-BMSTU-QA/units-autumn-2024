@@ -37,6 +37,7 @@ describe('test apply categories function', () => {
         const result = applyCategories(products, []);
         expect(result).toEqual(products);
     });
+
     it('should filter products by given categories', () => {
         const categories: Category[] = ['Электроника', 'Для дома'];
         const expectedResult = products.filter((product) =>
@@ -45,6 +46,7 @@ describe('test apply categories function', () => {
         const result = applyCategories(products, categories);
         expect(result).toEqual(expectedResult);
     });
+
     it('should return array when products match categories', () => {
         const categories: Category[] = ['Одежда', 'Игрушки'] as Category[];
         const result = applyCategories(products, categories);
@@ -58,6 +60,7 @@ describe('test apply categories function', () => {
             },
         ]);
     });
+
     it('should return all items if the only suitable category is specified', () => {
         const categories: Category[] = ['Электроника'];
         const expectedResult = products.filter(
