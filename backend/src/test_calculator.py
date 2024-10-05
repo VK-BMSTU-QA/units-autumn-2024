@@ -56,6 +56,9 @@ class TestCalculator(unittest.TestCase):
     def test_degree_positive_exponent(self):
         self.assertEqual(self.calc.degree(2, 3), 8)
 
+    def test_negative_degree(self):
+        self.assertEqual(self.calc.degree(4, -1), 0.25)
+
     def test_degree_zero_exponent(self):
         self.assertEqual(self.calc.degree(5, 0), 1)
 
