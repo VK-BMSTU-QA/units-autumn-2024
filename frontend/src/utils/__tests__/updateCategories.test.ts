@@ -1,7 +1,7 @@
 import { Category } from '../../types';
 import { updateCategories } from '../updateCategories';
 
-describe('test update categor function', () => {
+describe('test update category function', () => {
     it('should include category', () => {
         const categories: Category[] = [];
         const changedCategory: Category = 'Для дома';

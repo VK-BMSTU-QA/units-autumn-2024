@@ -6,32 +6,26 @@ import { getPrice } from '../../utils';
 
 jest.mock('../../utils');
 
+const getProductCard = (overrides = {}) => (
+    <ProductCard
+        id={1}
+        name="name"
+        description="desc"
+        price={100}
+        category="Одежда"
+        {...overrides}
+    />
+);
+
 describe('ProductCard test', () => {
     it('should render correctly', () => {
-        const rendered = render(
-            <ProductCard
-                id={1}
-                name={'name'}
-                description={'desc'}
-                price={100}
-                category={'Одежда'}
-                imgUrl={'/lamp.png'}
-            />
-        );
+        const rendered = render(getProductCard({ imgUrl: '/lamp.png' }));
 
         expect(rendered.asFragment()).toMatchSnapshot();
     });
 
     it('should call getPrice', () => {
-        render(
-            <ProductCard
-                id={1}
-                name={'name'}
-                description={'desc'}
-                price={100}
-                category={'Одежда'}
-            />
-        );
+        render(getProductCard());
 
         expect(getPrice).toHaveBeenCalledWith(100, undefined);
     });
@@ -39,29 +33,13 @@ describe('ProductCard test', () => {
     it('should get price from getPrice', () => {
         jest.mocked(getPrice).mockReturnValue('100 bubbles');
 
-        const rendered = render(
-            <ProductCard
-                id={1}
-                name={'name'}
-                description={'desc'}
-                price={100}
-                category={'Одежда'}
-            />
-        );
+        const rendered = render(getProductCard());
 
         expect(rendered.asFragment()).toMatchSnapshot();
     });
 
     it('should not render img', () => {
-        const rendered = render(
-            <ProductCard
-                id={1}
-                name={'name'}
-                description={'desc'}
-                price={100}
-                category={'Одежда'}
-            />
-        );
+        const rendered = render(getProductCard());
 
         expect(rendered.queryByRole('img')).toBeNull();
     });

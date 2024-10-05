@@ -53,8 +53,6 @@ describe('Main Page tests', () => {
 
         const rendered = render(<MainPage />);
 
-        // const categories = rendered.getByText('class="categories"');
-
         const categoryBtn = rendered.getByText('Электроника', {
             selector: '.categories__badge',
         });

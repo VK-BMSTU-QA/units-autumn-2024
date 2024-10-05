@@ -64,9 +64,6 @@ class TestCalculatorSub(unittest.TestCase):
     def setUp(self):
         self.calculator = Calculator()   
 
-    def setUp(self):
-        self.calculator = Calculator()
-
     def test_sub_positive(self):
         self.assertEqual(self.calculator.subtraction(1, 2), -1)
 
@@ -129,10 +126,10 @@ class TestCalculatorAbs(unittest.TestCase):
         self.assertEqual(self.calculator.absolute(1), 1)
 
     def test_abs_none(self):
-        self.assertRaises(TypeError, self.calculator.division, None)
+        self.assertRaises(TypeError, self.calculator.absolute, None)
 
     def test_abs_string(self):
-        self.assertRaises(TypeError, self.calculator.division, '-a')
+        self.assertRaises(TypeError, self.calculator.absolute, '-a')
 
 class TestCalculatorDegree(unittest.TestCase):
 
