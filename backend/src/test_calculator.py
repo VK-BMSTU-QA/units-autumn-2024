@@ -60,7 +60,7 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calc.degree(5, 0), 1)
 
     def test_ln_positive_number(self):
-        self.assertAlmostEqual(self.calc.ln(math.e), 1)
+        self.assertAlmostEqual(self.calc.ln(math.e), 1, places=7)
 
     def test_ln_negative_number(self):
         with self.assertRaises(ValueError):
@@ -71,31 +71,30 @@ class TestCalculator(unittest.TestCase):
             self.calc.ln(0)
 
     def test_log_valid_base(self):
-        self.assertEqual(self.calc.log(8, 2), 3)
+        self.assertAlmostEqual(self.calc.log(8, 2), 3, places=7)
 
     def test_log_negative_number(self):
         with self.assertRaises(ValueError):
             self.calc.log(-1, 2)  # негативный кейс
 
     def test_sqrt_positive_number(self):
-        self.assertEqual(self.calc.sqrt(4), 2)
+        self.assertAlmostEqual(self.calc.sqrt(4), 2, places=7)
 
     def test_sqrt_another_positive_number(self):
-        self.assertEqual(self.calc.sqrt(9), 3)
+        self.assertAlmostEqual(self.calc.sqrt(9), 3, places=7)
 
     def test_sqrt_negative_number(self):
         with self.assertRaises(ValueError):
             self.calc.sqrt(-4)
 
     def test_nth_root_valid_case(self):
-        self.assertEqual(self.calc.nth_root(8, 3), 2)
+        self.assertAlmostEqual(self.calc.nth_root(8, 3), 2, places=7)
 
     def test_nth_root_another_valid_case(self):
-        self.assertEqual(self.calc.nth_root(27, 3), 3)
+        self.assertAlmostEqual(self.calc.nth_root(27, 3), 3, places=7)
 
     def test_nth_root_negative_number(self):
         with self.assertRaises(ValueError):
             self.calc.nth_root(-8, 3)
-
 if __name__ == "__main__":
     unittest.main()
