@@ -1,7 +1,7 @@
 import { applyCategories } from '../applyCategories';
 import { Category, Product } from '../../types';
 
-export const testProducts = (): Product[] => [
+const testProducts = (): Product[] => [
     {
         id: 1,
         name: 'IPhone 14 Pro',

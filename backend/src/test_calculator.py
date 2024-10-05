@@ -1,6 +1,6 @@
 import unittest
 import math
-from calculator import Calculator
+from src.calculator import Calculator
 
 class TestCalculator(unittest.TestCase):
 
@@ -39,6 +39,21 @@ class TestCalculator(unittest.TestCase):
             self.calculator.addition("a", 1.01)
         self.assertEqual(str(context.exception), "can only concatenate str (not \"float\") to str")
 
+    def test_add_big(self):
+        self.assertEqual(self.calculator.addition(5e10, 6e10), 1.1e11)
+
+    def test_add_inf(self):
+        self.assertEqual(self.calculator.addition(math.inf, 1), math.inf)
+
+    def test_add_none_to_int(self):
+        self.assertRaises(TypeError, self.calculator.addition, None, 1)
+
+    def test_add_int_to_int_negative(self):
+        self.assertEqual(self.calculator.addition(-1, -2), -3)
+
+    def test_add_inf_negative(self):
+        self.assertEqual(self.calculator.addition(-math.inf, 1), -math.inf)
+
     def test_sub_int_to_int(self):
         self.assertEqual(self.calculator.subtraction(1, 2), -1)
     
@@ -71,6 +86,21 @@ class TestCalculator(unittest.TestCase):
             self.calculator.subtraction("a", 1.01)
         self.assertEqual(str(context.exception), "unsupported operand type(s) for -: 'str' and 'float'")
 
+    def test_sub_big(self):
+        self.assertEqual(self.calculator.subtraction(5e10, 6e10), -1e10)
+
+    def test_sub_inf(self):
+        self.assertEqual(self.calculator.subtraction(math.inf, 1), math.inf)
+
+    def test_sub_inf_negative(self):
+        self.assertEqual(self.calculator.subtraction(-math.inf, 1), -math.inf)
+
+    def test_sub_int_to_int_negative(self):
+        self.assertEqual(self.calculator.subtraction(-1, -2), 1)
+
+    def test_sub_none_to_int(self):
+        self.assertRaises(TypeError, self.calculator.subtraction, None, 1)
+
     def test_multiplication_int_to_int(self):
         self.assertEqual(self.calculator.multiplication(1, 2), 2)
     
@@ -98,6 +128,20 @@ class TestCalculator(unittest.TestCase):
     def test_multiplication_zero_to_zero(self):
         self.assertEqual(self.calculator.multiplication(0, 0), 0)
 
+    def test_multiplication_int_to_none(self):
+        self.assertRaises(TypeError, self.calculator.multiplication, 1, None)
+
+    def test_multiplication_inf_to_int(self):
+        self.assertEqual(self.calculator.multiplication(math.inf, 1), math.inf)
+
+    def test_multiplication_inf_to_int_negative(self):
+        self.assertEqual(self.calculator.multiplication(-math.inf, 1), -math.inf)
+
+    def test_multiplication_string_to_string_error(self):
+        with self.assertRaises(TypeError) as context:
+            self.calculator.multiplication("a", "a")
+        self.assertEqual(str(context.exception), "can't multiply sequence by non-int of type 'str'")
+
     def test_division_int_by_int(self):
         self.assertEqual(self.calculator.division(10, 2), 5)
     
@@ -110,9 +154,21 @@ class TestCalculator(unittest.TestCase):
     def test_division_float_by_float(self):
         self.assertEqual(self.calculator.division(5.5, 2.5), 2.2)
     
-   # def test_division_by_zero(self):
-   #     with self.assertRaises(ZeroDivisionError):
-    #        self.calculator.division(10, 0)
+    def test_division_int_to_none(self):
+        self.assertRaises(TypeError, self.calculator.division, 1, None)
+
+    def test_division_inf_to_int(self):
+        self.assertEqual(self.calculator.division(math.inf, 1), math.inf)
+
+    def test_division_inf_to_int_negative(self):
+        self.assertEqual(self.calculator.division(-math.inf, 1), -math.inf)
+
+    def test_division_string_to_string_error(self):
+        with self.assertRaises(TypeError) as context:
+            self.calculator.division("a", "a")
+       
+    def test_division_by_zero(self):
+        self.assertEqual(self.calculator.division(10, 0), None)
 
     def test_absolute_positive(self):
         self.assertEqual(self.calculator.absolute(5), 5)
@@ -135,7 +191,6 @@ class TestCalculator(unittest.TestCase):
     def test_degree_float_to_float(self):
         self.assertEqual(self.calculator.degree(2.5, 2.5), 9.882117688026186)
 
-    # Тесты для ln (натуральный логарифм)
     def test_ln_positive(self):
         self.assertEqual(self.calculator.ln(math.e), 1)
     
@@ -169,9 +224,8 @@ class TestCalculator(unittest.TestCase):
     def test_sqrt_zero(self):
         self.assertEqual(self.calculator.sqrt(0), 0)
 
-    #def test_sqrt_negative_error(self):
-    #    with self.assertRaises(ValueError):
-    #        self.calculator.sqrt(-1)
+    def test_sqrt_negative_error(self):
+        self.assertEqual(self.calculator.sqrt(-1), 6.123233995736766e-17+1j)
 
     def test_nth_root_int(self):
         self.assertEqual(self.calculator.nth_root(8, 3), 2)
@@ -179,12 +233,12 @@ class TestCalculator(unittest.TestCase):
     def test_nth_root_float(self):
         self.assertEqual(self.calculator.nth_root(27, 3), 3)
     
-    #def test_nth_root_negative(self):
-    #    self.assertEqual(round(self.calculator.nth_root(-27, 3), 2), -3)
+    def test_nth_root_negative(self):
+        self.assertEqual(self.calculator.nth_root(-27, 3), 1.5000000000000004+2.598076211353316j)
     
-    #def test_nth_root_zero_error(self):
-    #    with self.assertRaises(ValueError):
-    #        self.calculator.nth_root(10, 0)
+    def test_nth_root_zero_error(self):
+        with self.assertRaises(ZeroDivisionError):
+            self.calculator.nth_root(10, 0)
 
 def division_suite():
     suite = unittest.TestSuite()
@@ -193,6 +247,11 @@ def division_suite():
     suite.addTest(TestCalculator('test_division_int_by_float'))
     suite.addTest(TestCalculator('test_division_float_by_float'))
     suite.addTest(TestCalculator('test_division_by_zero'))
+    suite.addTest(TestCalculator('test_division_int_to_none'))
+    suite.addTest(TestCalculator('test_division_inf_to_int'))
+    suite.addTest(TestCalculator('test_division_inf_to_int_negative'))
+    suite.addTest(TestCalculator('test_division_string_to_string_error'))
+
     return suite
 
 def log_ln_suite():
@@ -217,7 +276,11 @@ def addition_suite():
     suite.addTest(TestCalculator('test_add_digit_to_string_error'))
     suite.addTest(TestCalculator('test_add_string_to_float_error'))
     suite.addTest(TestCalculator('test_add_float_to_string_error'))
-
+    suite.addTest(TestCalculator('test_add_big'))
+    suite.addTest(TestCalculator('test_add_inf'))
+    suite.addTest(TestCalculator('test_add_none_to_int'))
+    suite.addTest(TestCalculator('test_add_int_to_int_negative'))
+    suite.addTest(TestCalculator('test_add_inf_negative'))
 
     return suite
 
@@ -232,6 +295,9 @@ def multiplication_suite():
     suite.addTest(TestCalculator('test_multiplication_zero_to_float'))
     suite.addTest(TestCalculator('test_multiplication_float_to_zero'))
     suite.addTest(TestCalculator('test_multiplication_zero_to_zero'))
+    suite.addTest(TestCalculator('test_multiplication_int_to_none'))
+    suite.addTest(TestCalculator('test_multiplication_int_to_inf'))
+    suite.addTest(TestCalculator('test_multiplication_int_to_inf_negative'))
 
     return suite
 
@@ -245,6 +311,11 @@ def subtraction_suite():
     suite.addTest(TestCalculator('test_sub_digit_to_string_error'))
     suite.addTest(TestCalculator('test_sub_string_to_float_error'))
     suite.addTest(TestCalculator('test_sub_float_to_string_error'))
+    suite.addTest(TestCalculator('test_sub_big'))
+    suite.addTest(TestCalculator('test_sub_inf'))
+    suite.addTest(TestCalculator('test_sub_none_to_int'))
+    suite.addTest(TestCalculator('test_sub_int_to_int_negative'))
+    suite.addTest(TestCalculator('test_sub_inf_negative'))
 
     return suite
 
@@ -254,10 +325,13 @@ if __name__ == "__main__":
     print("Running addition tests:")
     runner.run(addition_suite())
 
+    print("\nRunning subtraction tests:")
+    runner.run(subtraction_suite())
+
     print("\nRunning multiplication tests:")
     runner.run(multiplication_suite())
 
-    print("\nRunning subtraction tests:")
-    runner.run(subtraction_suite())
+    print("\nRunning division tests:")
+    runner.run(division_suite())
 
     unittest.main()
