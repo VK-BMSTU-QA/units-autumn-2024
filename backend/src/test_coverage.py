@@ -1,5 +1,5 @@
 import unittest
-from backend.src.coverage_foo import MyClass
+from coverage_foo import MyClass
 import math
 
 

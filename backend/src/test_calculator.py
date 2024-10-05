@@ -1,5 +1,5 @@
 import unittest
-from backend.src.calculator import Calculator
+from calculator import Calculator
 import math
 
 
