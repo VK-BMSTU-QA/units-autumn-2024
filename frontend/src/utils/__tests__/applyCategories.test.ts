@@ -41,8 +41,14 @@ describe('test apply categories function', () => {
     it('should return products with chosen categories', () => {
         expect(applyCategories([product_clothes, product_electronics, product_home], ['Электроника'])).toStrictEqual([product_electronics]);
         expect(applyCategories([product_clothes, product_electronics, product_home], ['Электроника', 'Для дома'])).toStrictEqual([product_electronics, product_home]);
-        expect(applyCategories([product_clothes, product_electronics, product_home], [])).toStrictEqual([product_clothes, product_electronics, product_home]);
-        expect(applyCategories([product_clothes, product_home], ['Электроника'])).toStrictEqual([]);
         expect(applyCategories([product_home_2, product_electronics, product_home], ['Для дома'])).toStrictEqual([product_home_2, product_home]);
     });
+    
+    it('should return all products when no categories are chosen', () => {
+        expect(applyCategories([product_clothes, product_electronics, product_home], [])).toStrictEqual([product_clothes, product_electronics, product_home]);
+    })
+    
+    it('should return nothing if no products with such category', () => {
+        expect(applyCategories([product_clothes, product_home], ['Электроника'])).toStrictEqual([]);
+    })
 });
