@@ -83,12 +83,19 @@ class TestCalculator(unittest.TestCase):
     def test_sqrt_another_positive_number(self):
         self.assertEqual(self.calc.sqrt(9), 3)
 
+    def test_sqrt_negative_number(self):
+        with self.assertRaises(ValueError):
+            self.calc.sqrt(-4)
+
     def test_nth_root_valid_case(self):
         self.assertEqual(self.calc.nth_root(8, 3), 2)
 
     def test_nth_root_another_valid_case(self):
         self.assertEqual(self.calc.nth_root(27, 3), 3)
 
+    def test_nth_root_negative_number(self):
+        with self.assertRaises(ValueError):
+            self.calc.nth_root(-8, 3)
 
 if __name__ == "__main__":
     unittest.main()
