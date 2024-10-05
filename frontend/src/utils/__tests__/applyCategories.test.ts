@@ -20,4 +20,12 @@ describe('test apply categories function', () => {
         ]);
     });
 
+    test('должен вернуть несколько заданных категорий', () => {
+        const result = applyCategories(products, ['Для дома', 'Одежда']);
+        expect(result).toEqual([
+            {id: 1, name: 'Куртец', description: 'Я этот куртец в последний раз одевал в девяносто четвертом, на стрелку', price: 666, category: 'Одежда'},
+            {id: 3, name: 'Холодильник', description: 'Источник холодного пива', price: 200, category: 'Для дома'},
+        ])
+    });
+
 });
