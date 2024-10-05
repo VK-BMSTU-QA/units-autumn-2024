@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard component tests should mock getPrice function and display correct formatted price 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        Samsung Galaxy S21
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        Latest Samsung smartphone
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        200 $
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Электроника
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ProductCard component tests should not render image if imgUrl is not provided 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        Sony WH-1000XM4
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        Noise-cancelling headphones
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        200 $
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Электроника
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ProductCard component tests should render the product image with given URL 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+  >
+    <div
+      class="product-card__text"
+    >
+      <h2
+        class="product-card__name"
+      >
+        Dell XPS 13
+      </h2>
+      <div
+        class="product-card__description"
+      >
+        Ultra-slim laptop
+      </div>
+      <h1
+        class="product-card__price"
+      >
+        200 $
+      </h1>
+      <div
+        class="product-card__category"
+      >
+        Электроника
+      </div>
+    </div>
+    <img
+      alt="Dell XPS 13"
+      class="product-card__image"
+      src="public/dell-xps.png"
+    />
+  </div>
+</DocumentFragment>
+`;
