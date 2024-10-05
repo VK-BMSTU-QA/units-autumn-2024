@@ -5,32 +5,38 @@ import { Categories } from './Categories';
 
 afterEach(jest.clearAllMocks);
 
-describe('test Categories', () => {
+describe('Categories test', () => {
     it('should render correctly', () => {
-        const { asFragment } = render(<Categories selectedCategories={[]} />);
+        const rendered = render(<Categories selectedCategories={[]} />);
 
-        expect(asFragment()).toMatchSnapshot();
+        expect(rendered.asFragment()).toMatchSnapshot();
     });
 
     it('should add class for selected badge', () => {
-        const { getByText } = render(<Categories selectedCategories={['Одежда']} />);
+        const rendered = render(<Categories selectedCategories={['Одежда']} />);
 
-
-        expect(getByText('Одежда')).toHaveClass('categories__badge_selected');
-        expect(getByText('Для дома')).not.toHaveClass('categories__badge_selected');
-        expect(getByText('Электроника')).not.toHaveClass('categories__badge_selected');
-
+        expect(rendered.getByText('Одежда')).toHaveClass(
+            'categories__badge_selected'
+        );
+        expect(rendered.getByText('Электроника')).not.toHaveClass(
+            'categories__badge_selected'
+        );
+        expect(rendered.getByText('Для дома')).not.toHaveClass(
+            'categories__badge_selected'
+        );
     });
 
     it('should call callback when category click', () => {
         const onCategoryClick = jest.fn();
-        const { getByText } = render(
-            <Categories selectedCategories={[]} onCategoryClick={onCategoryClick} />
+        const rendered = render(
+            <Categories
+                selectedCategories={[]}
+                onCategoryClick={onCategoryClick}
+            />
         );
 
-
         expect(onCategoryClick).toHaveBeenCalledTimes(0);
-        fireEvent.click(getByText('Одежда'));
+        fireEvent.click(rendered.getByText('Одежда'));
         expect(onCategoryClick).toHaveBeenCalledTimes(1);
     });
 });
