@@ -225,10 +225,10 @@ class TestCalculator_nth_root(unittest.TestCase):
     def test_nth_root_zero(self):
         self.assertRaises(ZeroDivisionError, self.calculator.nth_root, 2, 0)
 
-    def test_nth_root(self):
+    def test_nth_root_string(self):
         self.assertRaises(TypeError, self.calculator.nth_root, 'a', 2)
 
-    def test_nth_root(self):
+    def test_nth_root_none(self):
         self.assertRaises(TypeError, self.calculator.nth_root, 1, None)
 
 if __name__ == "__main__":

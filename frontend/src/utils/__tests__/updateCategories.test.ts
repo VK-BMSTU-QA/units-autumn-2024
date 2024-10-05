@@ -2,7 +2,7 @@ import { Category } from '../../types';
 import { updateCategories } from '../updateCategories';
 
 describe('test update category function', () => {
-    it('should include category', () => {
+    it('should add category', () => {
         const categories: Category[] = [];
         const changedCategory: Category = 'Для дома';
         const expectedCategories: Category[] = ['Для дома'];
@@ -11,7 +11,7 @@ describe('test update category function', () => {
             expectedCategories
         );
     });
-    it('should include category', () => {
+    it('should remove category', () => {
         const categories: Category[] = ['Для дома'];
         const changedCategory: Category = 'Для дома';
         const expectedCategories: Category[] = [];
