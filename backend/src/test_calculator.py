@@ -1,6 +1,6 @@
 import unittest
-from backend.src.calculator import Calculator
 import math
+from src.calculator import Calculator
 
 
 class TestCalculator(unittest.TestCase):
