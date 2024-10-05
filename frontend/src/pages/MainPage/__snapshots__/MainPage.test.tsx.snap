@@ -15,7 +15,13 @@ exports[`test main page should render correctly 1`] = `
     </h3>
     <div
       class="main-page__parameters"
-    />
+    >
+      <div>
+        <button>
+          button
+        </button>
+      </div>
+    </div>
     <div
       class="product-card"
     >
