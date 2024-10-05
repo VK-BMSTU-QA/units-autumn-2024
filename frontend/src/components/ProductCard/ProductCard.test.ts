@@ -27,13 +27,13 @@ let productWithoutImg : Product = {
 
 describe('product card test', () => {
     it('should render correctly', () => {
-        const rendered = render(<ProductCard key={productWithoutImg.id} {...product}/>);
+        const rendered = render(<ProductCard key={productWithoutImg.id} {...productWithoutImg}/>);
 
         expect(rendered.asFragment()).toMatchSnapshot();
     });
 
     it('should render correctly with img', () => {
-        const rendered = render(<ProductCard key={productWithImg.id} {...productWithNoPic}/>);
+        const rendered = render(<ProductCard key={productWithImg.id} {...productWithImg}/>);
 
         expect(rendered.asFragment()).toMatchSnapshot();
     });
