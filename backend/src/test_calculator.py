@@ -27,6 +27,11 @@ class TestCalculator(unittest.TestCase):
     def test_addition_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.addition, 'z', 33)
 
+    def test_addition_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.addition(None, None)
+            self.calculator.addition([], 0)
+
     ################################ ******************** ######################################
 
     def test_multiplication_int(self):
@@ -50,6 +55,11 @@ class TestCalculator(unittest.TestCase):
     def test_multiplication_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.multiplication, 'z', 'y')
 
+    def test_multiplication_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.multiplication(None, None)
+            self.calculator.multiplication([], 0)
+
     ################################ --------------------- ######################################
 
     def test_subtraction_int(self):
@@ -69,6 +79,11 @@ class TestCalculator(unittest.TestCase):
 
     def test_subtraction_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.subtraction, 'z', 'x')
+
+    def test_subtraction_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.subtraction(None, None)
+            self.calculator.subtraction([], 0)
 
     ################################ ///////////////////// ######################################
 
@@ -93,6 +108,11 @@ class TestCalculator(unittest.TestCase):
     def test_division_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.division, 'z', 'y')
 
+    def test_division_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.division(None, None)
+            self.calculator.division([], 0)
+
     ################################ |abs| ######################################
 
     def test_absolute_int(self):
@@ -106,6 +126,11 @@ class TestCalculator(unittest.TestCase):
 
     def test_absolute_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.absolute, 'z')
+
+    def test_absolute_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.absolute(None)
+            self.calculator.absolute([])
 
     ################################ degree ######################################
 
@@ -133,6 +158,11 @@ class TestCalculator(unittest.TestCase):
     def test_degree_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.degree, 'z', 'x')
 
+    def test_degree_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.degree(None, None)
+            self.calculator.degree([], 0)
+
     ################################ ln ######################################
 
     def test_ln_int(self):
@@ -152,6 +182,11 @@ class TestCalculator(unittest.TestCase):
 
     def test_ln_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.ln, 'z')
+
+    def test_ln_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.ln(None, None)
+            self.calculator.ln([], 0)
 
     ################################ log ######################################
 
@@ -176,6 +211,11 @@ class TestCalculator(unittest.TestCase):
     def test_log_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.log, 'z', 'x')
 
+    def test_log_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.log(None, None)
+            self.calculator.log([], 0)
+
     ################################ sqrt ######################################
 
     def test_sqrt_int(self):
@@ -192,6 +232,11 @@ class TestCalculator(unittest.TestCase):
 
     def test_sqrt_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.sqrt, 'z')
+
+    def test_sqrt_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.sqrt(None, None)
+            self.calculator.sqrt([], 0)
 
     ################################ root ######################################
 
@@ -218,6 +263,11 @@ class TestCalculator(unittest.TestCase):
 
     def test_nth_root_non_numeric(self):
         self.assertRaises(TypeError, self.calculator.nth_root, 'z', 'x')
+
+    def test_root_wrong_types(self):
+        with self.assertRaises(TypeError):
+            self.calculator.nth_root(None, None)
+            self.calculator.nth_root([], 0)
 
 
 if __name__ == "__main__":
