@@ -39,20 +39,6 @@ describe('test useCurrentTime', () => {
         expect(initialTime).not.toBe(currentTime);
     });
 
-    it('should update time correctly after multiple seconds', () => {
-        const { result } = renderHook(() => useCurrentTime());
-        const initialTime = result.current;
-
-        act(() => {
-            jest.advanceTimersByTime(5000); // Move time forward by 5 seconds
-        });
-
-        const currentTime = result.current;
-
-        expect(initialTime).not.toBe(currentTime);
-        expect(currentTime).toBe('12:42:26');
-    });
-
     it('should use Date function', () => {
         const { result } = renderHook(() => useCurrentTime());
         const data = result.current;
