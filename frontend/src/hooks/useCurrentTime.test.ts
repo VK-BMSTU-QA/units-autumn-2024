@@ -17,22 +17,24 @@ describe('useCurrentTime Hook', () => {
     });
 
     it('should return current time', () => {
+        const settedTime = new Date('2024-01-01 21:00:00');
+        jest.setSystemTime(settedTime);
+
         const { result } = renderHook(() => useCurrentTime());
 
-        const currentTime = new Date().toLocaleTimeString('ru-RU');
-
-        expect(result.current).toBe(currentTime);
+        expect(result.current).toBe('21:00:00');
     });
 
     it('should update time every second', () => {
-        const { result } = renderHook(() => useCurrentTime());
+        const settedTime = new Date('2024-01-01 21:00:00');
+        jest.setSystemTime(settedTime);
 
-        const initialTime = result.current;
+        const { result } = renderHook(() => useCurrentTime());
 
         act(() => {
             jest.advanceTimersByTime(1000);
         });
 
-        expect(result.current).not.toBe(initialTime);
+        expect(result.current).not.toBe('21:00:00');
     });
 });

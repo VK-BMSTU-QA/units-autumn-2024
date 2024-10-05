@@ -58,7 +58,6 @@ describe('MainPage test', () => {
         ];
 
         jest.mocked(applyCategories).mockReturnValue(products);
-        jest.mocked(getPrice).mockReturnValue('100 ₽');
 
         const rendered = render(<MainPage />);
 

@@ -21,6 +21,9 @@ class TestCalculator(unittest.TestCase):
     def test_add_zero(self):
         self.assertEqual(self.calculator.addition(0, 0), 0)
 
+    def test_add_float(self):
+        self.assertEqual(self.calculator.addition(0.5, 0.5), 1)
+
     def test_add_wrong_types(self):
         with self.assertRaises(TypeError):
             self.calculator.addition(None, None)
@@ -38,6 +41,9 @@ class TestCalculator(unittest.TestCase):
 
     def test_multiply_by_zero(self):
         self.assertEqual(self.calculator.multiplication(5, 0), 0)
+
+    def test_multiply_float(self):
+        self.assertEqual(self.calculator.multiplication(0.5, 0.5), 0.25)
 
     def test_multiply_wrong_types(self):
         with self.assertRaises(TypeError):
@@ -57,6 +63,9 @@ class TestCalculator(unittest.TestCase):
     def test_subtract_zero(self):
         self.assertEqual(self.calculator.subtraction(0, 0), 0)
 
+    def test_subtract_float(self):
+        self.assertEqual(self.calculator.subtraction(0.5, 0.25), 0.25)
+
     def test_subtract_wrong_types(self):
         with self.assertRaises(TypeError):
             self.calculator.subtraction(None, None)
@@ -75,6 +84,9 @@ class TestCalculator(unittest.TestCase):
     def test_divide_by_zero(self):
         self.assertIsNone(self.calculator.division(5, 0))
 
+    def test_division_float(self):
+        self.assertEqual(self.calculator.division(0.5, 0.25), 2)
+
     def test_divide_wrong_types(self):
         with self.assertRaises(TypeError):
             self.calculator.division(None, None)
@@ -89,6 +101,9 @@ class TestCalculator(unittest.TestCase):
 
     def test_absolute_zero(self):
         self.assertEqual(self.calculator.absolute(0), 0)
+
+    def test_absolute_float(self):
+        self.assertEqual(self.calculator.absolute(-0.25), 0.25)
 
     def test_absolute_wrong_types(self):
         with self.assertRaises(TypeError):
@@ -114,6 +129,12 @@ class TestCalculator(unittest.TestCase):
     def test_degree_nonzero_base_zero_power(self):
         self.assertEqual(self.calculator.degree(5, 0), 1)
 
+    def test_degree_float_base(self):
+        self.assertEqual(self.calculator.degree(4, 0.5), 2)
+
+    def test_degree_float(self):
+        self.assertEqual(self.calculator.degree(0.5, 3), 0.125)
+
     def test_degree_wrong_types(self):
         with self.assertRaises(TypeError):
             self.calculator.degree(None, None)
@@ -129,6 +150,9 @@ class TestCalculator(unittest.TestCase):
     def test_ln_less_than_one(self):
         self.assertLess(self.calculator.ln(0.5), 0)
 
+    def test_ln_float(self):
+        self.assertAlmostEqual(self.calculator.ln(0.5), -0.693147181)
+
     def test_ln_wrong_types(self):
         with self.assertRaises(TypeError):
             self.calculator.ln(None)
@@ -140,6 +164,9 @@ class TestCalculator(unittest.TestCase):
 
     def test_log_one_as_base(self):
         self.assertAlmostEqual(self.calculator.log(1, 10), 0)
+
+    def test_log_float_base(self):
+        self.assertAlmostEqual(self.calculator.log(0.25, 0.5), 2)
 
     def test_log_one_as_number(self):
         with self.assertRaises(ZeroDivisionError):
@@ -162,6 +189,9 @@ class TestCalculator(unittest.TestCase):
     def test_sqrt_zero(self):
         self.assertEqual(self.calculator.sqrt(0), 0)
 
+    def test_sqrt_float(self):
+        self.assertEqual(self.calculator.sqrt(0.25), 0.5)
+
     def test_sqrt_negative(self):
         result = self.calculator.sqrt(-1)
         self.assertIsInstance(result, complex)
@@ -179,6 +209,9 @@ class TestCalculator(unittest.TestCase):
 
     def test_nth_root_zero(self):
         self.assertEqual(self.calculator.nth_root(0, 5), 0)
+
+    def test_nth_root_float(self):
+        self.assertEqual(self.calculator.nth_root(0.125, 3), 0.5)
 
     def test_nth_root_negative_complex_result(self):
         result = self.calculator.nth_root(-1, 2)
