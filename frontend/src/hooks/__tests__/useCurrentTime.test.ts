@@ -21,6 +21,10 @@ describe('test useCurrentTime', () => {
         jest.useRealTimers();
     });
 
+    it('should render correctly', () => {
+        const { result } = renderHook(() => useCurrentTime());
+        expect(result.current).toBe('12:42:21');
+
     it('should update time every second', () => {
         const { result } = renderHook(() => useCurrentTime());
         const initialTime = result.current;
@@ -45,12 +49,10 @@ describe('test useCurrentTime', () => {
         const currentTime = result.current;
 
         expect(initialTime).not.toBe(currentTime);
-        expect(currentTime).toBe(new Date('2020-02-02T12:42:26Z').toLocaleString());
+        expect(currentTime).toBe('12:42:26');
     });
 
-    it('should render correctly', () => {
-        const { result } = renderHook(() => useCurrentTime());
-        expect(result.current).toBe('12:42:21');
+
     });
     it('should use Date function', () => {
         const { result } = renderHook(() => useCurrentTime());
