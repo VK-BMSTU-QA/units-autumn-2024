@@ -7,16 +7,16 @@ describe('useCurrentTime Hook', () => {
     afterAll(() => {
         jest.useRealTimers();
     });
-    it('should display time coorectly', () => {
+    it('должно правильно отображаться время', () => {
         const { result } = renderHook(() => useCurrentTime());
         expect(result.current).toMatch(/^\d{2}:\d{2}:\d{2}$/);
     });
-    it('should return current time', () => {
+    it('должно быть возвращено текущее время', () => {
         const { result } = renderHook(() => useCurrentTime());
         const currentTime = new Date().toLocaleTimeString('ru-RU');
         expect(result.current).toBe(currentTime);
     });
-    it('should update time every second', () => {
+    it('следует обновлять время каждую секунду', () => {
         const { result } = renderHook(() => useCurrentTime());
         const initialTime = result.current;
         act(() => {
