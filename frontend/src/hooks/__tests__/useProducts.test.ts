@@ -44,11 +44,11 @@ describe('test use products function', () => {
         expect(result.current).toEqual(expected);
     });
 
-    test('Должен содержать продукт с названием Micro Tunnel Boring Machine', () => {
+    test('Должен содержать продукт с названием Настольная лампа', () => {
         const { result } = renderHook(() => useProducts());
 
         const expected = result.current.filter(
-            (product: Product) => product.name === 'Micro Tunnel Boring Machine'
+            (product: Product) => product.name === 'Настольная лампа'
         );
     });
 
@@ -56,5 +56,26 @@ describe('test use products function', () => {
         const { result } = renderHook(() => useProducts());
 
         expect(result.current).toHaveLength(4);
+    });
+
+    test('должен содержать продукт с категорией Для дома', () => {
+        const { result } = renderHook(() => useProducts());
+
+        const houseProd = result.current.filter(
+            (product: Product) => product.category === 'Для дома'
+        );
+
+        expect(houseProd).toHaveLength(1);
+    });
+
+    test('проверка на содержание цены', () => {
+        const { result } = renderHook(() => useProducts());
+
+        const productPrice = result.current.find(
+            (product: Product) => product.price === 999 && product.priceSymbol === '$'
+        );
+
+        expect(productPrice).toBeDefined();
+        expect(productPrice?.name).toBe('IPhone 14 Pro');
     })
 });
