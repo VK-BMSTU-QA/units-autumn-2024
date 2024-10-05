@@ -11,6 +11,12 @@ class TestMyClass(unittest.TestCase):
     def test_my_class_1(self):
         self.assertEqual(self.my_class.my_foo(3, 4), 5)
 
+    def test_my_class_1_2(self):
+        self.assertEqual(self.my_class.my_foo("w", "w"), 2)
+
+    def test_my_class_1_3(self):
+        self.assertEqual(self.my_class.my_foo(math.inf, math.inf), 2)
+
     def test_my_class_2(self):
         self.assertRaises(ZeroDivisionError, self.my_class.my_foo, 0, 4)
 
