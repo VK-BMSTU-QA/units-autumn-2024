@@ -3,7 +3,7 @@ import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MainPage } from './MainPage';
 import { Category, Product } from '../../types';
-import { applyCategories, getPrice, updateCategories } from '../../utils';
+import { applyCategories, updateCategories } from '../../utils';
 import { useCurrentTime } from '../../hooks';
 
 jest.mock('../../utils');
@@ -80,7 +80,7 @@ describe('MainPage test', () => {
         expect(rendered.getAllByText('Для дома').length).toBeGreaterThan(0);
     });
 
-    it('should display filter on category', () => {
+    it('should display filter on single category', () => {
         jest.mocked(updateCategories).mockReturnValue(['Электроника']);
 
         const rendered = render(<MainPage />);
@@ -91,5 +91,44 @@ describe('MainPage test', () => {
         expect(rendered.getByText('Одежда')).not.toHaveClass('selected');
         expect(rendered.getByText('Электроника')).toHaveClass('selected');
         expect(rendered.getByText('Для дома')).not.toHaveClass('selected');
+    });
+
+    it('should display filter on several categories', () => {
+        jest.mocked(updateCategories).mockReturnValue([
+            'Электроника',
+            'Для дома',
+        ]);
+
+        const rendered = render(<MainPage />);
+        const electronicsCategoryBtn = rendered.getAllByText('Электроника')[0];
+        const homeCategoryBtn = rendered.getAllByText('Для дома')[0];
+
+        fireEvent.click(electronicsCategoryBtn);
+        fireEvent.click(homeCategoryBtn);
+
+        expect(rendered.getByText('Одежда')).not.toHaveClass('selected');
+        expect(rendered.getByText('Электроника')).toHaveClass('selected');
+        expect(rendered.getByText('Для дома')).toHaveClass('selected');
+    });
+
+    it('should display filter on all categories', () => {
+        jest.mocked(updateCategories).mockReturnValue([
+            'Электроника',
+            'Для дома',
+            'Одежда',
+        ]);
+
+        const rendered = render(<MainPage />);
+        const electronicsCategoryBtn = rendered.getAllByText('Электроника')[0];
+        const homeCategoryBtn = rendered.getAllByText('Для дома')[0];
+        const clothesCategoryBtn = rendered.getAllByText('Одежда')[0];
+
+        fireEvent.click(electronicsCategoryBtn);
+        fireEvent.click(homeCategoryBtn);
+        fireEvent.click(clothesCategoryBtn);
+
+        expect(rendered.getByText('Одежда')).toHaveClass('selected');
+        expect(rendered.getByText('Электроника')).toHaveClass('selected');
+        expect(rendered.getByText('Для дома')).toHaveClass('selected');
     });
 });
