@@ -27,8 +27,8 @@ class TestCalculator(unittest.TestCase):
 
     # сложение бесконечности
     def test_add_inf(self):
-        self.assertTrue(math.isinf(self.calculator.addition(math.inf, 1)))
-        self.assertTrue(math.isinf(self.calculator.addition(-math.inf, -1)))
+        self.assertEqual(self.calculator.addition(math.inf, 1), math.inf)
+        self.assertEqual(self.calculator.addition(-math.inf, -1), -math.inf)
 
     # сложение float
     def test_add_float(self):
@@ -44,7 +44,7 @@ class TestCalculator(unittest.TestCase):
 
     # сложение больших чисел
     def test_add_big(self):
-        self.assertEqual(self.calculator.addition(1000000, 2000000), 3000000)
+        self.assertEqual(self.calculator.addition(10**100, 10**100), 2 * 10**100)
 
     # сложение float и int
     def test_add_float_int(self):
@@ -70,8 +70,10 @@ class TestCalculator(unittest.TestCase):
 
     # умножение бесконечности
     def test_mul_inf(self):
-        self.assertTrue(math.isinf(self.calculator.multiplication(math.inf, 1)))
-        self.assertTrue(math.isinf(self.calculator.multiplication(-math.inf, -1)))
+        self.assertEqual(self.calculator.multiplication(math.inf, 1), math.inf)
+        self.assertEqual(self.calculator.multiplication(-math.inf, -1), math.inf)
+        self.assertEqual(self.calculator.multiplication(math.inf, -1), -math.inf)
+        self.assertEqual(self.calculator.multiplication(-math.inf, 1), -math.inf)
 
     # умножение float
     def test_mul_float(self):
@@ -91,7 +93,7 @@ class TestCalculator(unittest.TestCase):
     
     # умножение больших чисел
     def test_mul_big(self):
-        self.assertEqual(self.calculator.multiplication(999999, 1000000), 999999000000)
+        self.assertEqual(self.calculator.multiplication(10**100, 10**100), 10**200)
 
     # умножение нуля на ноль
     def test_mul_zero_zero(self):
@@ -121,8 +123,10 @@ class TestCalculator(unittest.TestCase):
 
     # вычитание бесконечности
     def test_sub_inf(self):
-        self.assertTrue(math.isinf(self.calculator.subtraction(math.inf, 1)))
-        self.assertTrue(math.isinf(self.calculator.subtraction(-math.inf, -1)))
+        self.assertEqual(self.calculator.subtraction(math.inf, 1), math.inf)
+        self.assertEqual(self.calculator.subtraction(-math.inf, -1), -math.inf)
+        self.assertEqual(self.calculator.subtraction(math.inf, -1), math.inf)
+        self.assertEqual(self.calculator.subtraction(-math.inf, 1), -math.inf)
 
     # вычитание float
     def test_sub_float(self):
@@ -142,7 +146,7 @@ class TestCalculator(unittest.TestCase):
 
     # вычитание больших чисел
     def test_sub_big(self):
-        self.assertEqual(self.calculator.subtraction(1000000, 2000000), -1000000)
+        self.assertEqual(self.calculator.subtraction(10**100, 10**101), -9 * 10**100)
 
     # вычитание нуля из нуля
     def test_sub_zero_zero(self):
@@ -168,8 +172,10 @@ class TestCalculator(unittest.TestCase):
 
     # деление бесконечности
     def test_div_inf(self):
-        self.assertTrue(math.isinf(self.calculator.division(math.inf, 1)))
-        self.assertTrue(math.isinf(self.calculator.division(-math.inf, -1)))
+        self.assertEqual(self.calculator.division(math.inf, 1), math.inf)
+        self.assertEqual(self.calculator.division(-math.inf, -1), math.inf)
+        self.assertEqual(self.calculator.division(math.inf, -1), -math.inf)
+        self.assertEqual(self.calculator.division(-math.inf, 1), -math.inf)
 
     # деление float
     def test_div_float(self):
@@ -189,7 +195,7 @@ class TestCalculator(unittest.TestCase):
 
     # деление больших чисел
     def test_div_big(self):
-        self.assertAlmostEqual(self.calculator.division(1000000, 2000000), 0.5)
+        self.assertAlmostEqual(self.calculator.division(10**100, 10**99), 10.0, places=7)
 
     # деление на ноль
     def test_div_zero_zero(self):
@@ -211,8 +217,8 @@ class TestCalculator(unittest.TestCase):
 
     # модуль бесконечности
     def test_absolute_inf(self):
-        self.assertTrue(math.isinf(self.calculator.absolute(math.inf)))
-        self.assertTrue(math.isinf(self.calculator.absolute(-math.inf)))
+        self.assertEqual(self.calculator.absolute(math.inf), math.inf)
+        self.assertEqual(self.calculator.absolute(-math.inf), math.inf)
 
     # модуль строки
     def test_absolute_str(self):
@@ -224,13 +230,17 @@ class TestCalculator(unittest.TestCase):
 
     # модуль отрицательного числа близкого к нулю
     def test_absolute_negative_zero(self):
-        self.assertEqual(self.calculator.absolute(-0.000001), 0.000001)
+        self.assertEqual(self.calculator.absolute(-1e-15), 1e-15)
 
     
     # степень
     # степень int
     def test_degree_int(self):
         self.assertEqual(self.calculator.degree(2, 3), 8)
+
+    # степень отрицательного числа с float
+    def test_degree_negative_float(self):
+        self.assertAlmostEqual(self.calculator.degree(-2.0, 3), -8.0)
 
     # степень отрицательного числа
     def test_degree_negative(self):
@@ -250,7 +260,8 @@ class TestCalculator(unittest.TestCase):
 
     # степень бесконечности
     def test_degree_inf(self):
-        self.assertTrue(math.isinf(self.calculator.degree(math.inf, 2)))
+        self.assertEqual(self.calculator.degree(math.inf, 2), math.inf)
+        self.assertEqual(self.calculator.degree(-math.inf, 2), math.inf)
 
     # степень строки
     def test_degree_str(self):
@@ -274,7 +285,7 @@ class TestCalculator(unittest.TestCase):
 
     # степень большого числа
     def test_degree_big(self):
-        self.assertAlmostEqual(self.calculator.degree(1000000, 3), 1e18)
+        self.assertAlmostEqual(self.calculator.degree(10**6, 3), 10**18)
 
 
     # натуральный логарифм
@@ -288,7 +299,7 @@ class TestCalculator(unittest.TestCase):
 
     # ln от бесконечности
     def test_ln_inf(self):
-        self.assertTrue(math.isinf(self.calculator.ln(math.inf)))
+        self.assertEqual(self.calculator.ln(math.inf), math.inf)
 
     # ln от нуля
     def test_ln_zero(self):
@@ -320,9 +331,13 @@ class TestCalculator(unittest.TestCase):
     def test_log_one(self):
         self.assertAlmostEqual(self.calculator.log(1, 10), 0)
 
+     # log от float по основанию 10
+    def test_log_one_float(self):
+        self.assertAlmostEqual(self.calculator.log(1.0, 10), 0.0)
+
     # log от бесконечности
     def test_log_inf(self):
-        self.assertTrue(math.isinf(self.calculator.log(math.inf, 10)))
+        self.assertEqual(self.calculator.log(math.inf, 10), math.inf)
 
     # log от нуля
     def test_log_zero(self):
@@ -362,13 +377,17 @@ class TestCalculator(unittest.TestCase):
 
     # log от большого числа
     def test_log_big(self):
-        self.assertAlmostEqual(self.calculator.log(1e18, 10), 18)
+        self.assertAlmostEqual(self.calculator.log(10**100, 10), 100, places=7)
 
     
     # квадратный корень
     # sqrt от int
     def test_sqrt(self):
         self.assertAlmostEqual(self.calculator.sqrt(4), 2)
+    
+     # sqrt от float
+    def test_sqrt_float(self):
+        self.assertAlmostEqual(self.calculator.sqrt(4.0), 2.0)
 
     # sqrt от нуля
     def test_sqrt_zero(self):
@@ -376,11 +395,11 @@ class TestCalculator(unittest.TestCase):
 
     # sqrt от бесконечности
     def test_sqrt_inf(self):
-        self.assertTrue(math.isinf(self.calculator.sqrt(math.inf)))
+        self.assertEqual(self.calculator.sqrt(math.inf), math.inf)
 
     # sqrt от отрицательного числа
     def test_sqrt_negative(self):
-        self.assertTrue(self.calculator.sqrt(-1).imag != 0)
+         self.assertAlmostEqual(self.calculator.sqrt(-1), 1j)
 
     # sqrt от строки
     def test_sqrt_str(self):
@@ -392,7 +411,7 @@ class TestCalculator(unittest.TestCase):
 
     # sqrt от большого числа
     def test_sqrt_big(self):
-        self.assertAlmostEqual(self.calculator.sqrt(1000000000000), 1000000)
+        self.assertAlmostEqual(self.calculator.sqrt(10**100), 10**50, places=7)
 
     
     #  n-ный корень
@@ -404,9 +423,15 @@ class TestCalculator(unittest.TestCase):
     def test_nth_root(self):
         self.assertAlmostEqual(self.calculator.nth_root(16, 4), 2)
 
+    # nth_root от float по int степени
+    def test_nth_root_float(self):
+        self.assertAlmostEqual(self.calculator.nth_root(27.0, 3), 3.0)
+
+
     # nth_root от бесконечности
     def test_nth_root_inf(self):
-        self.assertTrue(math.isinf(self.calculator.nth_root(math.inf, 2)))
+        self.assertEqual(self.calculator.nth_root(math.inf, 2), math.inf)
+        self.assertEqual(self.calculator.nth_root(-math.inf, 2), math.inf)
 
     # nth_root от отрицательного числа
     def test_nth_root_negative(self):
@@ -434,7 +459,7 @@ class TestCalculator(unittest.TestCase):
 
     # nth_root от большого числа
     def test_nth_root_big(self):
-        self.assertAlmostEqual(self.calculator.nth_root(1000000000000, 3), 10000)
+        self.assertAlmostEqual(self.calculator.nth_root(10**30, 10), 10**3, places=7)
 
 
 if __name__ == "__main__":
