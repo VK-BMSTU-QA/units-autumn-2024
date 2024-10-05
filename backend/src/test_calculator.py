@@ -41,6 +41,7 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calc.degree(2, 3), 8)
         self.assertEqual(self.calc.degree(2, 0), 1)
         self.assertEqual(self.calc.degree(-2, 3), -8)
+        self.assertEqual(self.calc.degree(2, -2), 0.25)
 
     def test_ln(self):
         self.assertAlmostEqual(self.calc.ln(1), 0)
