@@ -6,9 +6,9 @@ describe('test useCurrentTime', () => {
     let originalDate: DateConstructor;
 
     beforeAll(() => {
-        jest.useFakeTimers(); // time stop
+        jest.useFakeTimers();
         originalDate = global.Date;
-        const mockDate = new originalDate('2020-02-02T12:42:21Z');
+        const mockDate = new originalDate('2024-01-01T12:42:21Z');
         global.Date = jest.fn(() => mockDate) as unknown as DateConstructor;
         global.Date.prototype.toLocaleTimeString = jest.fn(() => '12:42:21');
     });

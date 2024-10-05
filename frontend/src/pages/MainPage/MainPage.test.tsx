@@ -35,7 +35,7 @@ describe('test MainPage', () => {
         jest.mocked(useCurrentTime).mockReturnValue('12:00:00');
 
         const rendered = render(<MainPage />);
-        expect(rendered).toMatchSnapshot();
+        expect(rendered.asFragment()).toMatchSnapshot();
     });
 
     it('should update categories', () => {
