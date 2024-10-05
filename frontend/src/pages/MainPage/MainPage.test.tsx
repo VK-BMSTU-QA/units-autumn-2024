@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MainPage } from './MainPage';
 import { useProducts } from '../../hooks';
@@ -70,5 +70,13 @@ describe('MainPage test', () => {
         expect(rendered.getByText('3 ₽')).toBeInTheDocument();
         expect(rendered.getAllByText('Электроника')[0]).toBeInTheDocument();
         expect(rendered.getByAltText('p3')).toBeInTheDocument();
+    });
+
+    it('should click on category', () => {
+        const rendered = render(<MainPage />);
+        const categories = rendered.getAllByText('Одежда');
+        // вызов клика на первом элементе массива - 'Одежда'
+        fireEvent.click(categories[0]);
+        expect(rendered.getByText('p1')).toBeInTheDocument();
     });
 });
