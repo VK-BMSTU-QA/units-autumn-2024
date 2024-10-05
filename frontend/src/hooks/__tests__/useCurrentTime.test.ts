@@ -24,6 +24,7 @@ describe('test useCurrentTime', () => {
     it('should render correctly', () => {
         const { result } = renderHook(() => useCurrentTime());
         expect(result.current).toBe('12:42:21');
+    });
 
     it('should update time every second', () => {
         const { result } = renderHook(() => useCurrentTime());
@@ -52,14 +53,10 @@ describe('test useCurrentTime', () => {
         expect(currentTime).toBe('12:42:26');
     });
 
-
-    });
     it('should use Date function', () => {
         const { result } = renderHook(() => useCurrentTime());
         const data = result.current;
 
         expect(data).toBe(new Date().toLocaleTimeString('ru-RU'));
     });
-
-
 });
