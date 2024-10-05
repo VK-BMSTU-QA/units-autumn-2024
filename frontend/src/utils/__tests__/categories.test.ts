@@ -26,7 +26,7 @@ describe('test applyCategories function', () => {
 });
 
 describe('test updateCategories function', () => {
-    it('should return array without changes if category is already in array', () => {
+    it('should remove category from array if it is already in array', () => {
         expect(updateCategories(['Одежда', 'Для дома'], 'Одежда')).toEqual([
             'Для дома',
         ]);

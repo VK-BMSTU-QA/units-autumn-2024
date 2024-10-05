@@ -72,11 +72,17 @@ describe('MainPage test', () => {
         expect(rendered.getByAltText('p3')).toBeInTheDocument();
     });
 
-    it('should click on category', () => {
+    it('should click on category and show all products on second click', () => {
         const rendered = render(<MainPage />);
         const categories = rendered.getAllByText('Одежда');
         // вызов клика на первом элементе массива - 'Одежда'
         fireEvent.click(categories[0]);
         expect(rendered.getByText('p1')).toBeInTheDocument();
+
+        // повторный клик на 'Одежда' для снятия фильтра
+        fireEvent.click(categories[0]);
+        expect(rendered.getByText('p1')).toBeInTheDocument();
+        expect(rendered.getByText('p2')).toBeInTheDocument();
+        expect(rendered.getByText('p3')).toBeInTheDocument();
     });
 });
