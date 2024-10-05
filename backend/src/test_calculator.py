@@ -27,7 +27,7 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calculator.addition(-1, 1), 0)
 
         # Тесты с бесконечностью
-        self.assertTrue(not math.isnan(self.calculator.multiplication(math.inf, -math.inf)))
+        self.assertTrue(math.isnan(self.calculator.addition(math.inf, -math.inf)))
         self.assertEqual(self.calculator.addition(math.inf, math.inf), math.inf)
         self.assertEqual(self.calculator.addition(math.inf, 2), math.inf)
         self.assertEqual(self.calculator.addition(math.inf, -1), math.inf)

@@ -39,11 +39,15 @@ let electronics : Product = {
 
 describe('test for the category application function', () => {
     it('returns products from the selected category', () => {
-        expect(applyCategories([clothes, home], ['Электроника'])).toStrictEqual([]);
         expect(applyCategories([clothes, electronics, home], ['Одежда', 'Для дома'])).toStrictEqual([clothes, home]);
         expect(applyCategories([clothes, electronics, home], ['Электроника', 'Для дома'])).toStrictEqual([electronics, home]);
         expect(applyCategories([clothes, electronics, home], ['Электроника'])).toStrictEqual([electronics]);
         expect(applyCategories([clothes, electronics, home], [])).toStrictEqual([clothes, electronics, home]);
         expect(applyCategories([home_2, electronics, home], ['Для дома'])).toStrictEqual([home_2, home]);
+    });
+
+    it('does not find products of the selected category', () => {
+        expect(applyCategories([clothes, home], ['Электроника'])).toStrictEqual([]);
+        expect(applyCategories([home_2, home], ['Электроника', 'Одежда'])).toStrictEqual([]);
     });
 });
