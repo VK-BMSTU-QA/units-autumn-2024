@@ -15,9 +15,11 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calc.addition(2, 3), 5)
         self.assertEqual(self.calc.addition(-1, 1), 0)
         self.assertEqual(self.calc.addition(-1, -1), -2)
+        self.assertAlmostEqual(self.calc.addition(-1.01, -1), -2.01, places=7)
 
     def test_multiplication(self):
         self.assertEqual(self.calc.multiplication(2, 3), 6)
+        self.assertAlmostEqual(self.calc.multiplication(2, 0.5), 1.0, places=7)
         self.assertEqual(self.calc.multiplication(-1, 1), -1)
         self.assertEqual(self.calc.multiplication(-1, -1), 1)
 
@@ -25,12 +27,16 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calc.subtraction(10, 5), 5)
         self.assertEqual(self.calc.subtraction(0, 0), 0)
         self.assertEqual(self.calc.subtraction(-1, -1), 0)
+        self.assertAlmostEqual(self.calc.subtraction(5.5, 1.2), 4.3, places=7)
 
     def test_division(self):
-        self.assertEqual(self.calc.division(10, 2), 5)
-        self.assertEqual(self.calc.division(-10, 2), -5)
-        self.assertEqual(self.calc.division(10, -2), -5)
-        self.assertIsNone(self.calc.division(10, 0))  
+        self.assertAlmostEqual(self.calc.division(10, 2), 5.0, places=7)
+        self.assertAlmostEqual(self.calc.division(-10, 2), -5.0, places=7)
+        self.assertAlmostEqual(self.calc.division(10, -2), -5.0, places=7)
+        self.assertAlmostEqual(self.calc.division(1, 3), 1/3, places=7) 
+    
+    def test_division_on_zero(self):
+        self.assertIsNone(self.calc.division(10, 0))
 
     def test_absolute(self):
         self.assertEqual(self.calc.absolute(-10), 10)
@@ -41,33 +47,34 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calc.degree(2, 3), 8)
         self.assertEqual(self.calc.degree(2, 0), 1)
         self.assertEqual(self.calc.degree(-2, 3), -8)
-        self.assertEqual(self.calc.degree(2, -2), 0.25)
+        self.assertAlmostEqual(self.calc.degree(2, -2), 0.25, places=7)
 
     def test_ln(self):
-        self.assertAlmostEqual(self.calc.ln(1), 0)
-        self.assertAlmostEqual(self.calc.ln(math.e), 1)
+        self.assertAlmostEqual(self.calc.ln(1), 0, places=7)
+        self.assertAlmostEqual(self.calc.ln(math.e), 1, places=7)
         with self.assertRaises(ValueError):
             self.calc.ln(-1)
 
     def test_log(self):
-        self.assertAlmostEqual(self.calc.log(8, 2), 3)
-        self.assertAlmostEqual(self.calc.log(100, 10), 2)
+        self.assertAlmostEqual(self.calc.log(8, 2), 3, places=7)
+        self.assertAlmostEqual(self.calc.log(100, 10), 2, places=7)
         with self.assertRaises(ValueError):
             self.calc.log(-1, 2)
 
     def test_sqrt(self):
-        self.assertAlmostEqual(self.calc.sqrt(4), 2)
-        self.assertAlmostEqual(self.calc.sqrt(9), 3)
+        self.assertAlmostEqual(self.calc.sqrt(4), 2, places=7)
+        self.assertAlmostEqual(self.calc.sqrt(9), 3, places=7)
         with self.assertRaises(ValueError):
-            if self.calc.sqrt(-1) is not None: 
+            if self.calc.sqrt(-1) is not None:
                 raise ValueError("Корень из отрицательного числа не поддерживается")
 
     def test_nth_root(self):
-        self.assertAlmostEqual(self.calc.nth_root(27, 3), 3)
-        self.assertAlmostEqual(self.calc.nth_root(16, 4), 2)
+        self.assertAlmostEqual(self.calc.nth_root(27, 3), 3, places=7)
+        self.assertAlmostEqual(self.calc.nth_root(16, 4), 2, places=7)
         with self.assertRaises(ValueError):
-            if self.calc.nth_root(-8, 2) is not None: 
+            if self.calc.nth_root(-8, 2) is not None:
                 raise ValueError("Корень из отрицательного числа не поддерживается")
-            
+
+
 if __name__ == "__main__":
     unittest.main()
