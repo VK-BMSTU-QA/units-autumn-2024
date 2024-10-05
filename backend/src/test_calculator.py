@@ -12,7 +12,7 @@ class TestCalculator(unittest.TestCase):
     def test_add_int(self):
         self.assertEqual(self.calculator.addition(1, 2), 3)
     
-    # сложение отрицательных чисел
+    # сложение отрицательного и положительного чисел
     def test_add_negative_and_positive(self):
         self.assertEqual(self.calculator.addition(-1, 1), 0)
 
@@ -415,12 +415,9 @@ class TestCalculator(unittest.TestCase):
 
     
     #  n-ный корень
-    # nth_root от int по int нечетной степени
+    # nth_root от int по int нечетной/четной степени
     def test_nth_root(self):
         self.assertAlmostEqual(self.calculator.nth_root(27, 3), 3)
-
-    # nth_root от int по int четной степени
-    def test_nth_root(self):
         self.assertAlmostEqual(self.calculator.nth_root(16, 4), 2)
 
     # nth_root от float по int степени
