@@ -70,6 +70,9 @@ describe('MainPageTest', () => {
             selector: '.categories__badge',
         });
 
+        expect(updateCategories).toHaveBeenCalledTimes(0);
+        expect(categoryButton).not.toHaveClass('categories__badge_selected');
+
         fireEvent.click(categoryButton);
 
         expect(updateCategories).toHaveBeenCalledTimes(1);

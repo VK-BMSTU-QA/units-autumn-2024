@@ -44,6 +44,6 @@ describe('applyCategories', () => {
         ],
     ])('%s', (_, products, categories, expected) => {
         const result = applyCategories(products, categories);
-        expect(result).toEqual(expected);
+        expect(result).toStrictEqual(expected);
     });
 });
