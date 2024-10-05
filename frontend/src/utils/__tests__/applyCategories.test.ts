@@ -50,15 +50,15 @@ describe('test apply categories function', () => {
         const result = applyCategories(products, categories);
         expect(result).toEqual([
             {
-        id: 4,
-        name: 'Зимний меховой плащ',
-        description: 'Теплый и изящный зимний плащ с натуральным мехом',
-        price: 32000,
-        category: 'Одежда',
-    },
+                id: 4,
+                name: 'Зимний меховой плащ',
+                description: 'Теплый и изящный зимний плащ с натуральным мехом',
+                price: 32000,
+                category: 'Одежда',
+            },
         ]);
     });
-    it('следует вернуть все товары, если будет указана единственная подходящая категория', () => {
+    it('should return all items if the only suitable category is specified', () => {
         const categories: Category[] = ['Электроника'];
         const expectedResult = products.filter(
             (product) => product.category === 'Электроника'

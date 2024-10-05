@@ -16,29 +16,36 @@ describe('ProductCard test', () => {
         imgUrl: 'https://example.com/image.jpg',
         id: 0,
     };
-    it('должен отображаться корректно', () => {
+    it('should be displayed correctly', () => {
         jest.mocked(getPrice).mockReturnValue('1234567 ₽');
         const rendered = render(<ProductCard {...productMock} />);
         expect(rendered.asFragment()).toMatchSnapshot();
     });
-    it('должно отображаться название продукта', () => {
+    it('product name should be displayed correctly', () => {
         const rendered = render(<ProductCard {...productMock} />);
         expect(rendered.getByText(productMock.name)).toBeInTheDocument();
     });
-    it('должно отображаться описание продукта', () => {
+    it('product description should be displayed correctly', () => {
         const rendered = render(<ProductCard {...productMock} />);
         expect(rendered.getByText(productMock.description)).toBeInTheDocument();
     });
-    it('должна отображаться цена продукта', () => {
+    it('price should be displayed', () => {
         const rendered = render(<ProductCard {...productMock} />);
         expect(rendered.getByText('1234567 ₽')).toBeInTheDocument();
     });
-    it('должна отображаться категория продукта', () => {
+    it('product categort should be displayed', () => {
         const rendered = render(<ProductCard {...productMock} />);
         expect(rendered.getByText(productMock.category)).toBeInTheDocument();
     });
-    it('должно отображаться изображение продукта при использовании imgUrl', () => {
+    it('product image should be displayed while using imgUrl', () => {
         const rendered = render(<ProductCard {...productMock} />);
         expect(rendered.getByAltText(productMock.name)).toBeInTheDocument();
+    });
+    it('product image should not be displayed while not using imgUrl', () => {
+        const productWithoutImage = { ...productMock, imgUrl: undefined };
+        const rendered = render(<ProductCard {...productWithoutImage} />);
+        expect(
+            rendered.queryByAltText(productMock.name)
+        ).not.toBeInTheDocument();
     });
 });

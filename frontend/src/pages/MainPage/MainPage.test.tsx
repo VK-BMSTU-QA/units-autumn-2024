@@ -71,13 +71,13 @@ describe('MainPage test', () => {
         jest.mocked(useCurrentTime).mockReturnValue('time');
     });
 
-    it('должен отображаться корректно', () => {
+    it('should be displayed correctly', () => {
         const rendered = render(<MainPage/>);
 
         expect(rendered.asFragment()).toMatchSnapshot();
     });
 
-    it('следует выбрать категорию', () => {
+    it('should select category', () => {
         jest.mocked(updateCategories).mockReturnValue(['Одежда']);
 
         const rendered = render(<MainPage/>);
@@ -92,7 +92,7 @@ describe('MainPage test', () => {
         expect(rendered.getByText('Для дома')).not.toHaveClass('selected');
     });
 
-    it('должны отображаться продукты', () => {
+    it('should display products', () => {
         const rendered = render(<MainPage/>);
 
         expect(applyCategories).toHaveBeenCalledTimes(1);
@@ -102,7 +102,7 @@ describe('MainPage test', () => {
         expect(rendered.getByText('Принтер')).toBeInTheDocument();
     });
 
-    it('следует выбрать несколько категорий', () => {
+    it('should select few categories', () => {
         jest.mocked(updateCategories)
             .mockReturnValueOnce(['Одежда'])
             .mockReturnValueOnce(['Одежда', 'Электроника']);
@@ -120,7 +120,7 @@ describe('MainPage test', () => {
         expect(rendered.getByText('Для дома')).not.toHaveClass('selected');
     });
 
-    it('следует выбрать все категории', () => {
+    it('should select all categories', () => {
         jest.mocked(updateCategories)
             .mockReturnValueOnce(['Одежда'])
             .mockReturnValueOnce(['Одежда', 'Электроника'])
@@ -140,7 +140,7 @@ describe('MainPage test', () => {
         expect(rendered.getByText('Для дома')).toHaveClass('selected');
     });
 
-    it('должно быть время рендеринга', () => {
+    it('should be render time', () => {
         const rendered = render(<MainPage/>);
 
         expect(useCurrentTime).toHaveBeenCalledTimes(1);

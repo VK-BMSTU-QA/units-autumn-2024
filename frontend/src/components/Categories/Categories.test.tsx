@@ -5,13 +5,13 @@ import { Categories } from './Categories';
 
 afterEach(jest.clearAllMocks);
 describe('Categories test', () => {
-    it('должен отображаться корректно', () => {
+    it('should be displayed correctly', () => {
         const rendered = render(<Categories selectedCategories={[]} />);
 
         expect(rendered.asFragment()).toMatchSnapshot();
     });
 
-    it('следует добавить класс для выбранного значка - Одежда', () => {
+    it('should add class for selected badge - Одежда', () => {
         const rendered = render(<Categories selectedCategories={['Одежда']} />);
 
         expect(rendered.getByText('Одежда')).toHaveClass(
@@ -25,7 +25,7 @@ describe('Categories test', () => {
         );
     });
 
-    it('следует добавить класс для выбранного значка - Электроника', () => {
+    it('should add class for selected badge - Электроника', () => {
         const rendered = render(<Categories selectedCategories={['Электроника']} />);
 
         expect(rendered.getByText('Одежда')).not.toHaveClass(
@@ -39,7 +39,7 @@ describe('Categories test', () => {
         );
     });
 
-    it('следует добавить класс для выбранного значка - Для дома', () => {
+    it('should add class for selected badge - Для дома', () => {
         const rendered = render(<Categories selectedCategories={['Для дома']} />);
 
         expect(rendered.getByText('Одежда')).not.toHaveClass(
@@ -53,7 +53,7 @@ describe('Categories test', () => {
         );
     });
 
-    it('следует вызвать колбек при нажатии на категорию', () => {
+    it('should call the callback when clicked on category', () => {
         const onCategoryClick = jest.fn();
         const rendered = render(
             <Categories
