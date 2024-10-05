@@ -8,7 +8,7 @@ import { applyCategories, updateCategories } from '../../utils';
 jest.mock('../../utils');
 jest.mock('../../hooks');
 
-describe('test MainPage should render 1', () => {
+describe('test MainPage', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
