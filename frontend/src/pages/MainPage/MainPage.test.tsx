@@ -50,22 +50,33 @@ describe('MainPage component tests', () => {
         expect(useProducts).toHaveBeenCalled();
     });
 
-    it('should correctly update categories when clicked', () => {
+    it('should correctly update categories when clicked and remove category on second click', () => {
         jest.mocked(updateCategories).mockImplementation(
-            (activeCategories, clickedCategory) => [...activeCategories, clickedCategory]
+            (activeCategories, clickedCategory) => {
+                if (activeCategories.includes(clickedCategory)) {
+                    return activeCategories.filter(category => category !== clickedCategory);
+                }
+                return [...activeCategories, clickedCategory];
+            }
         );
-
+    
         const { getByText } = render(<MainPage />);
-
+    
         const electronicsCategory = getByText('Электроника', {
             selector: '.categories__badge',
         });
-
+    
         fireEvent.click(electronicsCategory);
-
         expect(updateCategories).toHaveBeenCalledWith([], 'Электроника');
         expect(
             getByText('Электроника', { selector: '.categories__badge' })
         ).toHaveClass('categories__badge_selected');
+    
+        fireEvent.click(electronicsCategory);
+        expect(updateCategories).toHaveBeenCalledWith(['Электроника'], 'Электроника');
+        expect(
+            getByText('Электроника', { selector: '.categories__badge' })
+        ).not.toHaveClass('categories__badge_selected');
     });
+    
 });

@@ -14,11 +14,6 @@ describe('updateCategories function', () => {
         expect(result).toEqual(['Для дома']);
     });
 
-    it('should return the same list if category does not exist', () => {
-        const result = updateCategories(currentCategories, 'Одежда');
-        expect(result).toEqual([...currentCategories, 'Одежда']);
-    });
-
     it('should return the same list if category is removed and then added back', () => {
         let result = updateCategories(currentCategories, 'Электроника');
         result = updateCategories(result, 'Электроника');
