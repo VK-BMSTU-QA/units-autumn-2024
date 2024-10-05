@@ -1,7 +1,6 @@
 import {applyCategories} from '../applyCategories';
 import type {Product, Category} from '../../types';
 
-// Пример данных для тестирования
 const mockProducts: Product[] = [
     {id: 1, name: "name", description: "name", price: 123, priceSymbol: '$', imgUrl: "name", category: 'Электроника'},
     {id: 2, name: "name", description: "name", price: 123, priceSymbol: '$', imgUrl: "name", category: 'Для дома'},
@@ -11,7 +10,7 @@ const mockProducts: Product[] = [
 describe('applyCategories', () => {
     test('returns all products if no categories are provided', () => {
         const result = applyCategories(mockProducts, []);
-        expect(result).toEqual(mockProducts);  // Ожидаем, что все продукты будут возвращены
+        expect(result).toEqual(mockProducts);
     });
 
     test('filters products by provided categories', () => {

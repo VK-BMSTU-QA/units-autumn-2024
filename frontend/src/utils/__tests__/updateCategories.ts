@@ -18,7 +18,7 @@ describe('updateCategories', () => {
     test('returns a new array and does not mutate the original array', () => {
         const currentCategories: Category[] = ['Электроника', "Одежда"];
         const result = updateCategories(currentCategories, "Для дома");
-        expect(result).not.toBe(currentCategories); // Проверяем, что возвращен новый массив
-        expect(currentCategories).toEqual(['Электроника', "Одежда"]); // Проверяем, что оригинальный массив не изменился
+        expect(result).not.toBe(currentCategories);
+        expect(currentCategories).toEqual(['Электроника', "Одежда"]);
     });
 });

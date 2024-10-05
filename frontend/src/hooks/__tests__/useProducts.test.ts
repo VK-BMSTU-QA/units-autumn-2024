@@ -5,10 +5,7 @@ describe('useProducts', () => {
   test('возвращает список продуктов', () => {
     const { result } = renderHook(() => useProducts());
 
-    // Проверяем, что возвращается массив с 4 продуктами
     expect(result.current).toHaveLength(4);
-
-    // Проверяем первый продукт
     expect(result.current[0]).toEqual({
       id: 1,
       name: 'IPhone 14 Pro',
@@ -19,7 +16,6 @@ describe('useProducts', () => {
       imgUrl: '/iphone.png',
     });
 
-    // Проверяем второй продукт
     expect(result.current[1]).toEqual({
       id: 2,
       name: 'Костюм гуся',
@@ -29,7 +25,6 @@ describe('useProducts', () => {
       category: 'Одежда',
     });
 
-    // Проверяем третий продукт
     expect(result.current[2]).toEqual({
       id: 3,
       name: 'Настольная лампа',
@@ -39,7 +34,6 @@ describe('useProducts', () => {
       imgUrl: '/lamp.png',
     });
 
-    // Проверяем четвертый продукт
     expect(result.current[3]).toEqual({
       id: 4,
       name: 'Принтер',

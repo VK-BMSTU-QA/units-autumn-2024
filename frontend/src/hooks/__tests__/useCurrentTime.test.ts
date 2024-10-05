@@ -1,16 +1,14 @@
-// useCurrentTime.test.js
-
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useCurrentTime } from '../useCurrentTime';
 
 describe('useCurrentTime', () => {
   beforeEach(() => {
-    jest.useFakeTimers(); // Переместили внутрь beforeEach
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
     jest.clearAllTimers();
-    jest.useRealTimers(); // Возвращаем реальные таймеры после каждого теста
+    jest.useRealTimers();
   });
 
   test('возвращает текущее время и обновляется каждую секунду', () => {
@@ -18,7 +16,6 @@ describe('useCurrentTime', () => {
 
     const initialTime = result.current;
 
-    // Проматываем время на 1 секунду
     act(() => {
       jest.advanceTimersByTime(1000);
     });
@@ -29,10 +26,10 @@ describe('useCurrentTime', () => {
   test('очищает интервал при размонтировании', () => {
     const { unmount } = renderHook(() => useCurrentTime());
 
-    expect(jest.getTimerCount()).toBe(1); // Убедимся, что таймер установлен
+    expect(jest.getTimerCount()).toBe(1);
 
     unmount();
 
-    expect(jest.getTimerCount()).toBe(0); // Проверяем, что таймер очищен
+    expect(jest.getTimerCount()).toBe(0);
   });
 });
