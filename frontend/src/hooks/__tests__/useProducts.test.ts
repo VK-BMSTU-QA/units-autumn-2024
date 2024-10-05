@@ -15,4 +15,11 @@ describe('test use products hook', () => {
             expect(product).toHaveProperty('category');
         });
     });
+
+    test('should return an array with correct length', () => {
+        const products = useProducts();
+
+        expect(products).toBeInstanceOf(Array);
+        expect(products.length).toEqual(4);
+    });
 });

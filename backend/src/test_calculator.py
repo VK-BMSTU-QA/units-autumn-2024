@@ -132,7 +132,7 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calculator.division(1, 2), 0.5)
 
     def test_division_zero(self):
-        self.assertEqual(self.calculator.division(3, 0), None)
+        self.assertIsNone(self.calculator.division(3, 0))
 
     def test_division_negative(self):
         self.assertAlmostEqual(self.calculator.division(-10, 3), -10 / 3)
@@ -249,18 +249,34 @@ class TestCalculator(unittest.TestCase):
         self.assertAlmostEqual(self.calculator.log(1000, 10), 3)
         self.assertAlmostEqual(self.calculator.log(1, 2), 0)
 
-    def test_log_negative(self):
+    def test_log_negative_arg(self):
         with self.assertRaises(ValueError):
             self.calculator.log(-100, 10)
+
+    def test_log_negative_base(self):
+        with self.assertRaises(ValueError):
+            self.calculator.log(100, -10)
+
+    def test_log_negative_arg_and_base(self):
+        with self.assertRaises(ValueError):
+            self.calculator.log(-100, -10)
 
     def test_log_infinity(self):
         self.assertEqual(self.calculator.log(float("inf"), 10), float("inf"))
         with self.assertRaises(ValueError):
             self.calculator.log(0, 10)
 
-    def test_log_zero(self):
+    def test_log_zero_arg(self):
         with self.assertRaises(ValueError):
             self.calculator.log(0, 10)
+
+    def test_log_zero_base(self):
+        with self.assertRaises(ValueError):
+            self.calculator.log(100, 0)
+    
+    def test_log_one_base(self):
+        with self.assertRaises(ZeroDivisionError):
+            self.calculator.log(100, 1)
 
     def test_log_type_error(self):
         self.assertRaises(TypeError, self.calculator.log, "test")

@@ -35,7 +35,7 @@ jest.mock('../../hooks', () => ({
             category: 'Одежда',
         },
     ]),
-    useCurrentTime: jest.fn(() => '11:00:01 PM'),
+    useCurrentTime: jest.fn(() => '11:00:01'),
 }));
 
 describe('MainPageTest', () => {
@@ -58,7 +58,7 @@ describe('MainPageTest', () => {
 
     it('should render current time correctly', () => {
         const { getByText } = render(<MainPage />);
-        const currentTime = getByText('11:00:01 PM');
+        const currentTime = getByText('11:00:01');
 
         expect(currentTime).toBeInTheDocument();
     });
