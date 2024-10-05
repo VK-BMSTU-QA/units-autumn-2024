@@ -14,13 +14,24 @@ describe('product card test', () => {
         category: 'Одежда',
     };
 
-    test('', () => {
+    test('должен быть костюм гуся', () => {
         render(<ProductCard {...products} />);
         expect(screen.getByText('Костюм гуся')).toBeInTheDocument();
-    })
+    });
 
-    test('', () => {
+    test('должен отобразить цену с символом валюты', () => {
+        render(<ProductCard {...products} />);
+        expect(screen.getByText('1 000 ₽')).toBeInTheDocument();
+    });
+
+    test('должна быть категория одежда', () => {
         render(<ProductCard {...products} />);
         expect(screen.getByText('Одежда')).toBeInTheDocument();
-    })
+    });
+
+    test('не должна отображаться картинка если ее нет', () => {
+        const productWithoutImg = { ...products, imgUrl: undefined};
+        render(<ProductCard {...productWithoutImg} />);
+        expect(screen.queryByAltText('Костюм гуся')).not.toBeInTheDocument();
+    });
 });
