@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainPage test should be displayed correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="main-page"
+  >
+    <h2
+      class="main-page__title"
+    >
+      VK Маркет
+    </h2>
+    <h3>
+      time
+    </h3>
+    <div
+      class="main-page__parameters"
+    >
+      <div>
+        <div
+          class=""
+        >
+          Одежда
+        </div>
+        <div
+          class=""
+        >
+          Для дома
+        </div>
+        <div
+          class=""
+        >
+          Электроника
+        </div>
+      </div>
+    </div>
+    <div
+      class="product-card__text"
+    >
+      <div
+        data-id="1"
+        data-name="IPhone 14 Pro"
+      >
+        IPhone 14 Pro
+      </div>
+      <div
+        data-description="Latest iphone, buy it now"
+        data-id="1"
+      >
+        Latest iphone, buy it now
+      </div>
+      <div
+        data-id="1"
+        data-price="999"
+      >
+        999
+      </div>
+    </div>
+    <div
+      class="product-card__text"
+    >
+      <div
+        data-id="2"
+        data-name="Костюм гуся"
+      >
+        Костюм гуся
+      </div>
+      <div
+        data-description="Запускаем гуся, работяги"
+        data-id="2"
+      >
+        Запускаем гуся, работяги
+      </div>
+      <div
+        data-id="2"
+        data-price="1000"
+      >
+        1000
+      </div>
+    </div>
+    <div
+      class="product-card__text"
+    >
+      <div
+        data-id="3"
+        data-name="Настольная лампа"
+      >
+        Настольная лампа
+      </div>
+      <div
+        data-description="Говорят, что ее использовали в pixar"
+        data-id="3"
+      >
+        Говорят, что ее использовали в pixar
+      </div>
+      <div
+        data-id="3"
+        data-price="699"
+      >
+        699
+      </div>
+    </div>
+    <div
+      class="product-card__text"
+    >
+      <div
+        data-id="4"
+        data-name="Принтер"
+      >
+        Принтер
+      </div>
+      <div
+        data-description="Незаменимая вещь для студента"
+        data-id="4"
+      >
+        Незаменимая вещь для студента
+      </div>
+      <div
+        data-id="4"
+        data-price="7000"
+      >
+        7000
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
