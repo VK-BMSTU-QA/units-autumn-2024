@@ -12,7 +12,7 @@ class TestCalculator(unittest.TestCase):
     def test_add_int(self):
         self.assertEqual(self.calculator.addition(1, 2), 3)
     
-    # сложение отрицательных чисел
+    # сложение отрицательного и положительного чисел
     def test_add_negative_and_positive(self):
         self.assertEqual(self.calculator.addition(-1, 1), 0)
 
@@ -26,8 +26,10 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calculator.addition(0, 5), 5)
 
     # сложение бесконечности
-    def test_add_inf(self):
+    def test_add_inf_positive(self):
         self.assertEqual(self.calculator.addition(math.inf, 1), math.inf)
+    
+    def test_add_inf_negative(self):
         self.assertEqual(self.calculator.addition(-math.inf, -1), -math.inf)
 
     # сложение float
@@ -49,6 +51,10 @@ class TestCalculator(unittest.TestCase):
     # сложение float и int
     def test_add_float_int(self):
         self.assertEqual(self.calculator.addition(1.5, 2), 3.5)
+
+    # комплексное сложение
+    def test_addition_complex(self):
+        self.assertEqual(self.calculator.addition(complex(1, 2), complex(3, 4)), complex(4, 6))
 
 
     # умножение
@@ -103,6 +109,10 @@ class TestCalculator(unittest.TestCase):
     def test_mul_float_int(self):
         self.assertEqual(self.calculator.multiplication(1.5, 2), 3.0)
 
+    # комплексное умножение
+    def test_multiplication_complex(self):
+        self.assertEqual(self.calculator.multiplication(complex(1, 2), complex(3, 4)), complex(-5, 10))
+
 
     # вычитание
     # вычитание int
@@ -151,6 +161,10 @@ class TestCalculator(unittest.TestCase):
     # вычитание нуля из нуля
     def test_sub_zero_zero(self):
         self.assertEqual(self.calculator.subtraction(0, 0), 0)
+
+    # комплексное вычитание
+    def test_subtraction_complex(self):
+        self.assertEqual(self.calculator.subtraction(complex(1, 2), complex(3, 4)), complex(-2, -2))
 
     
     # деление
@@ -201,6 +215,9 @@ class TestCalculator(unittest.TestCase):
     def test_div_zero_zero(self):
         self.assertIsNone(self.calculator.division(1, 0))
 
+    # комплексное деление
+    def test_division_complex(self):
+        self.assertAlmostEqual(self.calculator.division(complex(1, 2), complex(3, 4)), complex(0.44, 0.08), places=7)
 
     # модуль
     # модуль int
@@ -231,6 +248,10 @@ class TestCalculator(unittest.TestCase):
     # модуль отрицательного числа близкого к нулю
     def test_absolute_negative_zero(self):
         self.assertEqual(self.calculator.absolute(-1e-15), 1e-15)
+
+    # комплексный модуль
+    def test_absolute_complex(self):
+        self.assertAlmostEqual(self.calculator.absolute(complex(3, 4)), 5.0)
 
     
     # степень
@@ -287,6 +308,10 @@ class TestCalculator(unittest.TestCase):
     def test_degree_big(self):
         self.assertAlmostEqual(self.calculator.degree(10**6, 3), 10**18)
 
+    # комплексная степень
+    def test_degree_complex(self):
+        self.assertAlmostEqual(self.calculator.degree(complex(1, 2), 3), complex(-11, -2), places=7)
+
 
     # натуральный логарифм
     # ln от e
@@ -320,6 +345,10 @@ class TestCalculator(unittest.TestCase):
     # ln от числа близкого к нулю
     def test_ln_zero_near(self):
         self.assertAlmostEqual(self.calculator.ln(1e-100), -230.25850929940458)
+
+    # комплексный ln
+    def test_ln_complex(self):
+        self.assertRaises(TypeError, self.calculator.ln, 1 + 2j)
 
 
     # логарифм
@@ -379,6 +408,9 @@ class TestCalculator(unittest.TestCase):
     def test_log_big(self):
         self.assertAlmostEqual(self.calculator.log(10**100, 10), 100, places=7)
 
+    # комплексный log
+    def test_log_complex(self):
+        self.assertRaises(TypeError, self.calculator.log, 1 + 2j)
     
     # квадратный корень
     # sqrt от int
@@ -413,14 +445,15 @@ class TestCalculator(unittest.TestCase):
     def test_sqrt_big(self):
         self.assertAlmostEqual(self.calculator.sqrt(10**100), 10**50, places=7)
 
+    # комплексный sqrt
+    def test_sqrt_complex(self):
+        self.assertAlmostEqual(self.calculator.sqrt(complex(1, 2)), complex(1.272019649514069, 0.7861513777574233), places=7)
+
     
     #  n-ный корень
-    # nth_root от int по int нечетной степени
+    # nth_root от int по int нечетной/четной степени
     def test_nth_root(self):
         self.assertAlmostEqual(self.calculator.nth_root(27, 3), 3)
-
-    # nth_root от int по int четной степени
-    def test_nth_root(self):
         self.assertAlmostEqual(self.calculator.nth_root(16, 4), 2)
 
     # nth_root от float по int степени
@@ -460,6 +493,10 @@ class TestCalculator(unittest.TestCase):
     # nth_root от большого числа
     def test_nth_root_big(self):
         self.assertAlmostEqual(self.calculator.nth_root(10**30, 10), 10**3, places=7)
+
+    # комплексный nth_root
+    def test_nth_root_complex(self):
+        self.assertAlmostEqual(self.calculator.nth_root(complex(1, 2), 3), complex(1.2196165079717578, 0.47171126778938893), places=7)
 
 
 if __name__ == "__main__":
