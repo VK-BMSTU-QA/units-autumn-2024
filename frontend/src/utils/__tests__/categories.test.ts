@@ -26,14 +26,20 @@ describe('test applyCategories function', () => {
 });
 
 describe('test updateCategories function', () => {
+    // убрать категорию, если она уже есть в массиве
     it('should remove category from array if it is already in array', () => {
         expect(updateCategories(['Одежда', 'Для дома'], 'Одежда')).toEqual([
             'Для дома',
         ]);
     });
+    // добавить категорию, если она отсутствует
     it('should add category to array if it is not there', () => {
         expect(updateCategories(['Одежда', 'Для дома'], 'Электроника')).toEqual(
             ['Одежда', 'Для дома', 'Электроника']
         );
+    });
+    // добавить категорию в пустой массив
+    it('should return array with category if it is added to empty array', () => {
+        expect(updateCategories([], 'Одежда')).toEqual(['Одежда']);
     });
 });
