@@ -21,13 +21,25 @@ class TestMyClass(unittest.TestCase):
         self.assertEqual(self.my_class.my_foo(math.inf, math.inf), math.inf)
 
     def test_my_class_5(self):
-        self.assertEqual(self.my_class.my_foo(1.2, 2.3), 3.5)
+        self.assertAlmostEqual(self.my_class.my_foo(1.2, 2.3), 3.5)
 
     def test_my_class_6(self):
         self.assertRaises(TypeError, self.my_class.my_foo, 'abc', 4)
 
     def test_my_class_7(self):
         self.assertEqual(self.my_class.my_foo(-2, -4), -6)
+
+    def test_my_class_8(self):
+        self.assertEqual(self.my_class.my_foo(5, 4), 5.8)
+
+    def test_my_class_9(self):
+        self.assertEqual(self.my_class.my_foo(3, 5), 9)
+
+    def test_my_class_10(self):
+        self.assertRaises(TypeError, self.my_class.my_foo, None, 1)
+
+    def test_my_class_11(self):
+        self.assertRaises(TypeError, self.my_class.my_foo, 'a', 1.3)
 
 
 if __name__ == "__main__":
