@@ -21,6 +21,12 @@ describe('ProductCard', () => {
         imgUrl: '/iphone.png',
     };
 
+
+    it('должен отображать продукт корректно', () => {
+        const { asFragment } = render(<ProductCard {...product} />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+
     it('должен отобразить название продукта', () => {
         render(<ProductCard {...product} />);
         expect(screen.getByText('IPhone 14 Pro')).toBeInTheDocument();
